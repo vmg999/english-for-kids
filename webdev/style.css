@@ -135,10 +135,10 @@ header {
   margin: auto;
 }
 #content-block {
-  position: relative;
+  position: absolute;
   width: 407px;
   height: 233px;
-  left:7.2vw;
+  left:16.8%;
   top: 295px;
 }
 #btn2 {
@@ -148,11 +148,11 @@ header {
 }
 
 #img-content {
-  position: relative;
+  position: absolute;
   width: 407px;
   height: 582px;
-  left: 50vw;
-  top: -115px;
+  left: 57.75%;
+  top: 120px;
   background: url(assets/content-image-1.png);
 }
 
