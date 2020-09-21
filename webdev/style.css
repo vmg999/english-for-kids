@@ -7,6 +7,11 @@
   --sect-max-width: 1280px;
 }
 
+html{
+  max-width: var(--max-width);
+  margin: auto;
+}
+
 body {
   max-width: var(--max-width);
   /* font-size: 14px; */
@@ -25,7 +30,6 @@ body {
 
 header {
   height: 95px;
-  /* font-size: 1.4em; */
 }
 
 .nav {
@@ -167,7 +171,6 @@ header {
   align-items: flex-end;
   letter-spacing: 1px;
   text-transform: uppercase;
-
   color: #373737;
 }
 
@@ -367,10 +370,8 @@ header {
   line-height: 28px;
   display: flex;
   align-items: flex-end;
-
   letter-spacing: 1px;
   text-transform: uppercase;
-
   color: #ffffff;
 }
 .form {
@@ -379,7 +380,6 @@ header {
   height: 104px;
   margin: auto;
   top: 200px;
-  /* background-color: white; */
 }
 
 #inpt {
@@ -432,7 +432,6 @@ header {
   text-align: center;
   letter-spacing: 1px;
   text-transform: uppercase;
-
   color: #373737;
 }
 #txt5 {
@@ -441,7 +440,6 @@ header {
   height: 40px;
   margin: auto;
   top: 140px;
-
   font-family: Roboto;
   font-style: normal;
   font-weight: normal;
@@ -450,7 +448,6 @@ header {
   display: flex;
   align-items: center;
   text-align: center;
-
   color: #4e4e4e;
 }
 
