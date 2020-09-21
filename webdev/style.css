@@ -202,10 +202,10 @@ header {
 }
 
 #user_card {
-  position: relative;
+  position: absolute;
   width: 298px;
   height: 175px;
-  left: 7.2vw;
+  left: 16.8%;
   top: 155px;
 }
 
@@ -258,7 +258,7 @@ header {
   position: absolute;
   width: 83px;
   height: 18px;
-  right: 229px;
+  left: 78%;
   top: 82px;
   display: flex;
   justify-content: space-between;
@@ -270,7 +270,7 @@ header {
 #slider {
   position: absolute;
   height: 244px;
-  left: 666px;
+  left: 44.13%;
   top: 120px;
   overflow-x: hidden;
   display: flex;
@@ -309,19 +309,19 @@ header {
 
 #img-content2 {
   background: url(assets/content-image-2.png);
-  position: relative;
+  position: absolute;
   width: 407px;
   height: 582px;
-  left: 7.2vw;
+  left: 16.8%;
   top: 120px;
 }
 
 #content-block2 {
-  position: relative;
+  position: absolute;
   width: 407px;
   height: 184px;
-  left: 42.7vw;
-  top: -260px;
+  left: 50.94%;
+  top: 319px;
 }
 
 #hdr4 {
