@@ -7,37 +7,26 @@
   --sect-max-width: 1280px;
 }
 
-html{
+html {
   max-width: var(--max-width);
   margin: auto;
 }
 
 body {
   max-width: var(--max-width);
-  /* font-size: 14px; */
   font-family: Roboto, sans-serif;
 }
-
-/* screen1===================================================== */
-
-.screen1 {
-  width: 100%;
-  min-height: 744px;
-  margin-top: -95px;
-  background-image: url(assets/bg-image-wrapper.png);
-  background-position: center;
-}
-
+/* header====================================================== */
 header {
   height: 95px;
+  position: relative;
+  z-index: 111;
 }
 
 .nav {
-
   margin: auto;
   max-width: 582px;
   height: 100%;
-  z-index: 1000;
 }
 .menu {
   height: 100%;
@@ -46,7 +35,6 @@ header {
   justify-content: space-between;
   list-style: none;
   align-items: center;
-  z-index: 1000;
 }
 .menu a {
   text-decoration: none;
@@ -55,9 +43,19 @@ header {
   font-weight: 200;
   opacity: 0.8;
 }
-
-#curnt{
+#curnt {
   border-bottom: 2px solid white;
+}
+
+/* screen1===================================================== */
+
+.screen1 {
+  position: relative;
+  width: 100%;
+  min-height: 744px;
+  margin-top: -95px;
+  background-image: url(assets/bg-image-wrapper.png);
+  background-position: center;
 }
 
 .main_h1 {
@@ -67,7 +65,7 @@ header {
   top: 230px;
   position: absolute;
   left: calc(50% - 730px / 2);
-  top: calc(50% - 75px / 2 - 200px);
+  top: calc(50% - 75px / 2 - 104.5px);
 }
 #hdr {
   text-transform: uppercase;
@@ -85,7 +83,7 @@ header {
   margin: auto;
   position: absolute;
   left: calc(50% - 504px / 2);
-  top: calc(50% - 50px / 2 - 112px);
+  top: calc(50% - 50px / 2 - 22px);
   line-height: 140%;
   text-align: center;
   font-size: 18px;
@@ -106,7 +104,7 @@ header {
 #btn1 {
   position: absolute;
   left: calc(50% - 184px / 2);
-  top: calc(50% - 46px / 2 - 40px);
+  top: calc(50% - 46px / 2 + 56px);
   margin: auto;
   width: 184px;
   height: 46px;
@@ -116,8 +114,8 @@ header {
   position: absolute;
   width: 170px;
   height: 20px;
-  left: calc(50% - 85px);
-  bottom: 284px;
+  left: calc(50% - 170px / 2);
+  bottom: 90px;
 }
 .socials ul {
   display: flex;
@@ -146,7 +144,7 @@ header {
   position: absolute;
   width: 407px;
   height: 233px;
-  left:16.8%;
+  left: 16.8%;
   top: 295px;
 }
 #btn2 {
