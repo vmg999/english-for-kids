@@ -515,7 +515,7 @@ footer {
 }
 
 .ftr {
-  width: var(--sect-max-width);
+  max-width: var(--sect-max-width);
   margin: auto;
   height: 45px;
   position: relative;
