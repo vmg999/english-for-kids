@@ -7,7 +7,8 @@ let numbers = document.querySelectorAll(".number"),
   mem,
   buffer = "",
   lastOperator,
-  isNewNumber = 1;
+  isNewNumber = 1,
+  pressedRes = 0;
 
 // -------addEventListener--------------------
 
@@ -40,6 +41,12 @@ res.addEventListener("click", function (e) {
 //--------------------------------------------
 
 function numberPress(e) {
+  if (pressedRes == 1) {    //нажатие цифры после равно начинает новое вычисление
+    mem = undefined;
+    buffer = "";
+    pressedRes = 0;
+  }
+
   if (isNewNumber == 0) {
     buffer += e;
   } else if (isNewNumber == 1) {
@@ -51,6 +58,7 @@ function numberPress(e) {
 }
 
 function operatorPress(e) {
+  pressedRes = 0;
   if (mem == undefined && isNewNumber == 0) {
     lastOperator = e;
     mem = parseFloat(buffer);
@@ -61,12 +69,13 @@ function operatorPress(e) {
     isNewNumber = 1;
     showOnDisplay(mem + " " + e);
     lastOperator = e;
+  } else if (mem != undefined && isNewNumber == 1) {
+    showOnDisplay(mem + " " + e);
+    lastOperator = e;
   }
 }
 
 function decPress(e) {
-  console.log(isNewNumber);
-
   if (isNewNumber == 0 && buffer.search(/\./) == -1) {
     buffer += e;
   } else if (isNewNumber == 1) {
@@ -99,16 +108,15 @@ function calc(op) {
 }
 
 function resPress(e) {
-  console.log(e);
   if (e === "=" && mem != undefined) {
     mem = calc(lastOperator);
     showOnDisplay(mem);
-    isNewNumber=1;
+    pressedRes = 1;
+    isNewNumber = 1;
   }
 }
 
 function clrBtnsPress(e) {
-  console.log(e);
   if (e === "CE") {
     buffer = "";
     isNewNumber = 1;
