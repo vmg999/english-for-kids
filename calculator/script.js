@@ -44,8 +44,7 @@ res.addEventListener("click", function (e) {
 function numberPress(e) {
   operatorPressed = 0;
 
-  if (pressedRes == 1) {
-    //нажатие цифры после равно начинает новое вычисление
+  if (pressedRes == 1) {    //нажатие цифры после равно начинает новое вычисление
     mem = undefined;
     buffer = "";
     pressedRes = 0;
@@ -70,6 +69,10 @@ function operatorPress(e) {
     isNewNumber = 0;
     operatorPressed = 0;
     showOnDisplay(buffer);
+  } else if(e==="√"){
+    mem=calc(e);
+    showOnDisplay(mem);
+    isNewNumber = 1;
   } else if (mem == undefined && isNewNumber == 0) {
     lastOperator = e;
     mem = parseFloat(buffer);
@@ -84,7 +87,6 @@ function operatorPress(e) {
     showOnDisplay(mem + " " + e);
     lastOperator = e;
   }
-
   operatorPressed = 1;
   pressedRes = 0;
 }
@@ -120,6 +122,15 @@ function calc(op) {
     }
   } else if (op === "*") {
     answ = mem * buffer;
+  }else if(op==="√"){
+    if(buffer && pressedRes == 0){
+      answ=Math.sqrt(parseFloat(buffer));
+      buffer='';
+    }else if(mem){
+      answ=Math.sqrt(mem);
+    }
+  }else if(op==="ˆ"){
+    answ=Math.pow(mem, parseFloat(buffer));
   }
   return answ;
 }
