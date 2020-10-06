@@ -91,6 +91,7 @@ function operatorPress(e) {
 
 function decPress(e) {
   operatorPressed = 0;
+  pressedRes = 0;
 
   if (isNewNumber == 0 && buffer.search(/\./) == -1) {
     buffer += e;
