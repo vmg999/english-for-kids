@@ -111,20 +111,20 @@ function showOnDisplay(value) {
 function calc(op) {
   let answ = 0;
   if (op === "+") {
-    answ = mem + parseFloat(buffer);
+    answ = parseFloat((mem + parseFloat(buffer)).toFixed(12));
   } else if (op === "-") {
-    answ = mem - buffer;
+    answ = parseFloat((mem - buffer).toFixed(12));
   } else if (op === "/") {
     if (buffer != 0) {
-      answ = mem / buffer;
+      answ = parseFloat((mem / buffer).toFixed(12));
     } else {
       answ = "Error";
     }
   } else if (op === "*") {
-    answ = mem * buffer;
+    answ = parseFloat((mem * buffer).toFixed(12));
   }else if(op==="√"){
     if(buffer && pressedRes == 0){
-      answ=Math.sqrt(parseFloat(buffer));
+      answ = parseFloat(Math.sqrt(parseFloat(buffer)).toFixed(12));
       buffer='';
     }else if(mem){
       answ=Math.sqrt(mem);
