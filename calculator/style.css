@@ -113,3 +113,7 @@ button {
     width: 132px;
   }
 }
+
+abbr {
+  text-decoration: none;
+}

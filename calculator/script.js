@@ -19,6 +19,26 @@ numbers.forEach((n) =>
   })
 );
 
+  window.addEventListener("keydown", function (e) {
+    if(e.key.search(/[01-9]/g) != -1){
+      numberPress(e.key);
+    }else if(e.key.search(/[-\+\*\/]/g) != -1){
+      operatorPress(e.key);
+    }else if(e.key.search("Enter") != -1){
+      resPress("=");
+    }else if(e.key.search("Backspace") != -1){
+      clrBtnsPress("CE");
+    }else if(e.key.search("c") != -1){
+      clrBtnsPress("C");
+    }else if(e.key.search("q") != -1){
+      operatorPress("√");
+    }else if(e.key.search(/[\^p]/) != -1){
+      operatorPress("ˆ");
+    }else if(e.key.search(/[\.,]/) != -1){
+      decPress(".");
+    }
+  })
+
 operators.forEach((n) =>
   n.addEventListener("click", function (e) {
     operatorPress(e.target.innerText);
