@@ -147,10 +147,10 @@ function calc(op) {
       answ = parseFloat(Math.sqrt(parseFloat(buffer)).toFixed(12));
       buffer='';
     }else if(mem){
-      answ=Math.sqrt(mem);
+      answ=parseFloat(Math.sqrt(mem).toFixed(12));
     }
   }else if(op==="ˆ"){
-    answ=Math.pow(mem, parseFloat(buffer));
+    answ=parseFloat(Math.pow(mem, parseFloat(buffer)).toFixed(12));
   }
   return answ;
 }
