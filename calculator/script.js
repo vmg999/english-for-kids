@@ -15,16 +15,18 @@ let numbers = document.querySelectorAll(".number"),
 
 numbers.forEach((n) =>
   n.addEventListener("click", function (e) {
+    if(e.clientX != 0){  // предотвращение повторного нажатия кнопки Enter'ом
     numberPress(e.target.innerText);
+    }
   })
 );
 
-  window.addEventListener("keydown", function (e) {
+  document.addEventListener("keydown", function (e) {
     if(e.key.search(/[01-9]/g) != -1){
       numberPress(e.key);
     }else if(e.key.search(/[-\+\*\/]/g) != -1){
       operatorPress(e.key);
-    }else if(e.key.search("Enter") != -1){
+    }else if(e.key == "Enter"){
       resPress("=");
     }else if(e.key.search("Backspace") != -1){
       clrBtnsPress("CE");
@@ -41,22 +43,30 @@ numbers.forEach((n) =>
 
 operators.forEach((n) =>
   n.addEventListener("click", function (e) {
+    if(e.clientX != 0){  // предотвращение повторного нажатия кнопки Enter'ом
     operatorPress(e.target.innerText);
+   }
   })
 );
 
 clrBtns.forEach((n) =>
   n.addEventListener("click", function (e) {
+    if(e.clientX != 0){  // предотвращение повторного нажатия кнопки Enter'ом
     clrBtnsPress(e.target.innerText);
+    }
   })
 );
 
 dec.addEventListener("click", function (e) {
+  if(e.clientX != 0){  // предотвращение повторного нажатия кнопки Enter'ом
   decPress(e.target.innerText);
+  }
 });
 
 res.addEventListener("click", function (e) {
+  if(e.clientX != 0){  // предотвращение повторного нажатия кнопки Enter'ом
   resPress(e.target.innerText);
+  }
 });
 
 //--------------------------------------------
@@ -131,26 +141,26 @@ function showOnDisplay(value) {
 function calc(op) {
   let answ = 0;
   if (op === "+") {
-    answ = parseFloat((mem + parseFloat(buffer)).toFixed(12));
+    answ = parseFloat((mem + parseFloat(buffer)).toFixed(10));
   } else if (op === "-") {
-    answ = parseFloat((mem - buffer).toFixed(12));
+    answ = parseFloat((mem - buffer).toFixed(10));
   } else if (op === "/") {
     if (buffer != 0) {
-      answ = parseFloat((mem / buffer).toFixed(12));
+      answ = parseFloat((mem / buffer).toFixed(10));
     } else {
       answ = "Error";
     }
   } else if (op === "*") {
-    answ = parseFloat((mem * buffer).toFixed(12));
+    answ = parseFloat((mem * buffer).toFixed(10));
   }else if(op==="√"){
     if(buffer && pressedRes == 0){
-      answ = parseFloat(Math.sqrt(parseFloat(buffer)).toFixed(12));
+      answ = parseFloat(Math.sqrt(parseFloat(buffer)).toFixed(10));
       buffer='';
     }else if(mem){
-      answ=parseFloat(Math.sqrt(mem).toFixed(12));
+      answ=parseFloat(Math.sqrt(mem).toFixed(10));
     }
   }else if(op==="ˆ"){
-    answ=parseFloat(Math.pow(mem, parseFloat(buffer)).toFixed(12));
+    answ=parseFloat(Math.pow(mem, parseFloat(buffer)).toFixed(10));
   }
   return answ;
 }
@@ -173,6 +183,7 @@ function clrBtnsPress(e) {
 
   if (e === "C") {
     mem = undefined;
+    lastOperator=undefined;
   }
   showOnDisplay("0");
 }
