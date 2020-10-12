@@ -154,10 +154,11 @@ function calc(op) {
     answ = parseFloat((mem * buffer).toFixed(10));
   }else if(op==="√"){
     if(buffer && pressedRes == 0){
-      answ = parseFloat(Math.sqrt(parseFloat(buffer)).toFixed(10));
+      answ = parseFloat(buffer)>=0 ? parseFloat(Math.sqrt(parseFloat(buffer)).toFixed(10)) : "Error";
       buffer='';
     }else if(mem){
-      answ=parseFloat(Math.sqrt(mem).toFixed(10));
+      answ=mem>=0 ? parseFloat(Math.sqrt(mem).toFixed(10)) : "Error";
+      buffer='';
     }
   }else if(op==="ˆ"){
     answ=parseFloat(Math.pow(mem, parseFloat(buffer)).toFixed(10));
