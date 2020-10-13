@@ -117,3 +117,16 @@ button {
 abbr {
   text-decoration: none;
 }
+
+.info{
+  position: fixed;
+  left: 10px;
+  top: 10px;
+  width: 20vw;
+  height: auto;
+  background-color:#ccc;
+  font-size: 12px;
+  font-family: sans-serif;
+  padding: 0 10px;
+  z-index: -1;
+}
