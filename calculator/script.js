@@ -6,10 +6,12 @@ let numbers = document.querySelectorAll(".number"),
   res = document.getElementById("result"),
   mem,
   buffer = "",
-  lastOperator,
-  isNewNumber = 1,
-  operatorPressed = 0,
-  pressedRes = 0;
+  state = {
+    lastOperator: undefined,
+    isNewNumber: 1,
+    operatorPressed: 0,
+    pressedRes: 0
+  }
 
 // -------addEventListener--------------------
 
@@ -72,64 +74,64 @@ res.addEventListener("click", function (e) {
 //--------------------------------------------
 
 function numberPress(e) {
-  operatorPressed = 0;
+  state.operatorPressed = 0;
 
-  if (pressedRes == 1) {    //нажатие цифры после равно начинает новое вычисление
+  if (state.pressedRes == 1) {    //нажатие цифры после равно начинает новое вычисление
     mem = undefined;
     buffer = "";
-    pressedRes = 0;
+    state.pressedRes = 0;
   }
 
-  if (isNewNumber == 0) {
+  if (state.isNewNumber == 0) {
     buffer += e;
-  } else if (isNewNumber == 1) {
+  } else if (state.isNewNumber == 1) {
     buffer = "";
     buffer += e;
-    isNewNumber = 0;
+    state.isNewNumber = 0;
   }
   showOnDisplay(buffer);
 }
 
 function operatorPress(e) {
   if (
-    (isNewNumber == 1 && operatorPressed == 1 && e === "-") ||
-    (isNewNumber == 1 && mem == undefined && buffer == "" && e === "-")
+    (state.isNewNumber == 1 && state.operatorPressed == 1 && e === "-") ||
+    (state.isNewNumber == 1 && mem == undefined && buffer == "" && e === "-")
   ) {
     buffer = "-";
-    isNewNumber = 0;
-    operatorPressed = 0;
+    state.isNewNumber = 0;
+    state.operatorPressed = 0;
     showOnDisplay(buffer);
   } else if(e==="√"){
     mem=calc(e);
     showOnDisplay(mem);
-    isNewNumber = 1;
-  } else if (mem == undefined && isNewNumber == 0) {
-    lastOperator = e;
+    state.isNewNumber = 1;
+  } else if (mem == undefined && state.isNewNumber == 0) {
+    state.lastOperator = e;
     mem = parseFloat(buffer);
-    isNewNumber = 1;
+    state.isNewNumber = 1;
     showOnDisplay(buffer + " " + e);
-  } else if (mem != undefined && isNewNumber == 0) {
-    mem = calc(lastOperator);
-    isNewNumber = 1;
+  } else if (mem != undefined && state.isNewNumber == 0) {
+    mem = calc(state.lastOperator);
+    state.isNewNumber = 1;
     showOnDisplay(mem + " " + e);
-    lastOperator = e;
-  } else if (mem != undefined && isNewNumber == 1) {
+    state.lastOperator = e;
+  } else if (mem != undefined && state.isNewNumber == 1) {
     showOnDisplay(mem + " " + e);
-    lastOperator = e;
+    state.lastOperator = e;
   }
-  operatorPressed = 1;
-  pressedRes = 0;
+  state.operatorPressed = 1;
+  state.pressedRes = 0;
 }
 
 function decPress(e) {
-  operatorPressed = 0;
-  pressedRes = 0;
+  state.operatorPressed = 0;
+  state.pressedRes = 0;
 
-  if (isNewNumber == 0 && buffer.search(/\./) == -1) {
+  if (state.isNewNumber == 0 && buffer.search(/\./) == -1) {
     buffer += e;
-  } else if (isNewNumber == 1) {
+  } else if (state.isNewNumber == 1) {
     buffer = "0.";
-    isNewNumber = 0;
+    state.isNewNumber = 0;
   }
   showOnDisplay(buffer);
 }
@@ -153,7 +155,7 @@ function calc(op) {
   } else if (op === "*") {
     answ = parseFloat((mem * buffer).toFixed(10));
   }else if(op==="√"){
-    if(buffer && pressedRes == 0){
+    if(buffer && state.pressedRes == 0){
       answ = parseFloat(buffer)>=0 ? parseFloat(Math.sqrt(parseFloat(buffer)).toFixed(10)) : "Error";
       buffer='';
     }else if(mem){
@@ -167,24 +169,24 @@ function calc(op) {
 }
 
 function resPress(e) {
-  operatorPressed = 0;
+  state.operatorPressed = 0;
 
   if (e === "=" && mem != undefined) {
-    mem = calc(lastOperator);
+    mem = calc(state.lastOperator);
     showOnDisplay(mem);
-    pressedRes = 1;
-    isNewNumber = 1;
+    state.pressedRes = 1;
+    state.isNewNumber = 1;
   }
 }
 
 function clrBtnsPress(e) {
-  operatorPressed = 0;
+  state.operatorPressed = 0;
   buffer = "";
-  isNewNumber = 1;
+  state.isNewNumber = 1;
 
   if (e === "C") {
     mem = undefined;
-    lastOperator=undefined;
+    state.lastOperator=undefined;
   }
   showOnDisplay("0");
 }
