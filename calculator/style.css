@@ -9,13 +9,13 @@ body {
 .calc {
   background-color: #1c93ee;
   width: 385px;
-  padding: 30px;
+  padding: 10px 20px;
   border-radius: 6px;
 }
 .calc-display-input {
   width: 360px;
   height: 60px;
-  margin: 20px 0;
+  margin: 10px 0;
   border-radius: 6px;
   background-color: #1d1d1d;
   color: #fff;
