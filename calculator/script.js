@@ -31,11 +31,17 @@ numbers.forEach((n) =>
     }else if(e.key == "Enter"){
       resPress("=");
     }else if(e.key.search("Backspace") != -1){
+      clrBtnsPress("→");
+    }else if(e.key.search("x") != -1){
       clrBtnsPress("CE");
     }else if(e.key.search("c") != -1){
       clrBtnsPress("C");
     }else if(e.key.search("q") != -1){
       operatorPress("√");
+    }else if(e.key.search("w") != -1){
+      operatorPress("∛");
+    }else if(e.key.search("r") != -1){
+      operatorPress(",⎵ ⎵");
     }else if(e.key.search(/[\^p]/) != -1){
       operatorPress("ˆ");
     }else if(e.key.search(/[\.,]/) != -1){
@@ -101,10 +107,20 @@ function operatorPress(e) {
     state.isNewNumber = 0;
     state.operatorPressed = 0;
     showOnDisplay(buffer);
-  } else if(e==="√"){
-    mem=calc(e);
-    showOnDisplay(mem);
-    state.isNewNumber = 1;
+  }else if(e==="√" || e==="∛"){
+    buffer=calc(e);
+    showOnDisplay(buffer);
+    mem=undefined;
+    state.lastOperator=undefined;
+    state.isNewNumber = 0;
+  }else if(e===",⎵ ⎵"){
+    if(String(buffer).search(/\./)!=-1 || String(mem).search(/\./)!=-1 ){
+    buffer=calc(e);
+    showOnDisplay(buffer);
+    mem=undefined;
+    state.lastOperator=undefined;
+    state.isNewNumber = 0;
+    }
   } else if (mem == undefined && state.isNewNumber == 0) {
     state.lastOperator = e;
     mem = parseFloat(buffer);
@@ -157,10 +173,20 @@ function calc(op) {
   }else if(op==="√"){
     if(buffer && state.pressedRes == 0){
       answ = parseFloat(buffer)>=0 ? parseFloat(Math.sqrt(parseFloat(buffer)).toFixed(10)) : "Error";
-      buffer='';
     }else if(mem){
       answ=mem>=0 ? parseFloat(Math.sqrt(mem).toFixed(10)) : "Error";
-      buffer='';
+    }
+  }else if(op==="∛"){
+    if(buffer && state.pressedRes == 0){
+      answ = parseFloat(Math.cbrt(parseFloat(buffer)).toFixed(10));
+    }else if(mem){
+      answ=parseFloat(Math.cbrt(mem).toFixed(10));
+    }
+  }else if(op===",⎵ ⎵"){
+    if(buffer && state.pressedRes == 0){
+      answ = parseFloat(buffer).toFixed(2);
+    }else if(mem){
+      answ=mem.toFixed(2);
     }
   }else if(op==="ˆ"){
     answ=parseFloat(Math.pow(mem, parseFloat(buffer)).toFixed(10));
@@ -180,6 +206,11 @@ function resPress(e) {
 }
 
 function clrBtnsPress(e) {
+  if(e==="→" && buffer != undefined && display.value !=0 && buffer.length>1){
+    buffer=buffer.slice(0,-1);
+    showOnDisplay(buffer);
+    return;
+  }
   state.operatorPressed = 0;
   buffer = "";
   state.isNewNumber = 1;
