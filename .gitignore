@@ -1,3 +1,5 @@
+.vscode
+.htaccess
 # Logs
 logs
 *.log
