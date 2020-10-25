@@ -11,6 +11,15 @@ let tmp,
     nm,
     daytime;
 
+
+const weatherIcon = document.querySelector('.weather-icon');
+const temperature = document.querySelector('.temperature');
+const weatherDescription = document.querySelector('.weather-description');
+const city = document.querySelector('.city');
+const pressure = document.querySelector('.pressure');
+const humidity = document.querySelector('.humidity');
+const wind = document.querySelector('.wind');
+
 const cUrl="https://api.chucknorris.io/jokes/random";
 const dayOfWeek = ["Воскресенье", "Понедельник", "Вторник", "Среда", "Четверг", "Пятница", "Суббота"];
 const monthName = ["Января", "Февраля", "Марта", "Апреля", "Мая", "Июня", "Июля", "Августа", "Сентября", "Октября", "Ноября", "Декабря"];
@@ -174,7 +183,26 @@ function clear(e){
   tmp = e.target.textContent;
   e.target.textContent = '';
 }
+//weather
+async function getWeather() {
+  const url = `https://api.openweathermap.org/data/2.5/weather?q=${city.textContent}&lang=ru&appid=ad2ae7626d7a6867eb2f52b2b6706e0b&units=metric`;
+  const res = await fetch(url);
+  const data = await res.json();
 
+  weatherIcon.className = 'weather-icon owf owf-4x';
+  weatherIcon.classList.add(`owf-${data.weather[0].id}`);
+  temperature.textContent = `${data.main.temp}°C`;
+  weatherDescription.textContent = data.weather[0].description.toUpperCase();
+  pressure.textContent = `Давление: ${data.main.pressure} kPa`;
+  humidity.textContent = `Влажность: ${data.main.humidity} %`;
+  wind.textContent = `Ветер: ${data.wind.speed} м/с, ${data.wind.deg} град.`;
+}
+function setCity(event) {
+  if (event.code === 'Enter') {
+    getWeather();
+    city.blur();
+  }
+}
 
 //citate
 async function getCitate(){
@@ -194,6 +222,9 @@ focus.addEventListener('click', clear);
 focus.addEventListener('keypress', setFocus);
 focus.addEventListener('blur', setFocus);
 (document.getElementById('more')).addEventListener('click', getCitate);
+document.addEventListener('DOMContentLoaded', getWeather);
+
+city.addEventListener('keypress', setCity);
 
 // Run
 showTime();
@@ -201,3 +232,4 @@ setBgGreet();
 getName();
 getFocus();
 getCitate();
+getWeather();
