@@ -60,7 +60,7 @@ function viewBgImage(data) {
 }
 function getImage() {
   const index = i % images.length;
-  const imageSrc = base + daytime + "/" + images[index];
+  const imageSrc = window.location.href + base + daytime + "/" + images[index];
   viewBgImage(imageSrc);
   i++;
   btn.disabled = true;
@@ -180,7 +180,7 @@ function clear(e){
 async function getCitate(){
   const response = await fetch(cUrl);
   const data = await response.json();
-  console.log(data);
+  // console.log(data);
   citate.innerText = await data.value;
 
 }
