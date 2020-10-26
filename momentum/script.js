@@ -9,7 +9,8 @@ const time = document.querySelector('.time'),
 // Options
 let tmp,
     nm,
-    daytime;
+    daytime,
+    town;
 
 
 const weatherIcon = document.querySelector('.weather-icon');
@@ -49,7 +50,7 @@ function setBgGreet() {
     daytime="evening";
     getImage();
     greeting.textContent = 'Добрый вечер, ';
-  }else if(hour > 0 && hour < 6){
+  }else if(hour >= 0 && hour < 6){
     // Night
     daytime="night";
     getImage();
@@ -183,12 +184,41 @@ function clear(e){
   tmp = e.target.textContent;
   e.target.textContent = '';
 }
+
 //weather
+lc = localStorage.getItem('city');
+if(lc!= null && lc!=undefined && lc !=""){
+  town=lc;
+  city.textContent = town;
+  getWeather();
+}else if(lc=="Город не найден"){
+  town="Киев";
+  localStorage.setItem('city', town);
+  city.textContent = town;
+  getWeather();
+}else if(lc == null || lc == "undefined" || lc !=""){
+  town="Киев";
+  getWeather();
+}
+
+
+
 async function getWeather() {
-  const url = `https://api.openweathermap.org/data/2.5/weather?q=${city.textContent}&lang=ru&appid=ad2ae7626d7a6867eb2f52b2b6706e0b&units=metric`;
+  const url = `https://api.openweathermap.org/data/2.5/weather?q=${town}&lang=ru&appid=ad2ae7626d7a6867eb2f52b2b6706e0b&units=metric`;
   const res = await fetch(url);
   const data = await res.json();
 
+  if(data.cod == 404){
+    city.textContent="Город не найден";
+
+    localStorage.setItem('city', tmp);
+
+    temperature.textContent = `N/A`;
+    weatherDescription.textContent = `N/A`;
+    pressure.textContent = `Давление: N/A`;
+    humidity.textContent = `Влажность: N/A`;;
+    wind.textContent = `Ветер: N/A`;
+  }else{
   weatherIcon.className = 'weather-icon owf owf-4x';
   weatherIcon.classList.add(`owf-${data.weather[0].id}`);
   temperature.textContent = `${data.main.temp}°C`;
@@ -196,11 +226,23 @@ async function getWeather() {
   pressure.textContent = `Давление: ${data.main.pressure} kPa`;
   humidity.textContent = `Влажность: ${data.main.humidity} %`;
   wind.textContent = `Ветер: ${data.wind.speed} м/с, ${data.wind.deg} град.`;
+
+  }
 }
-function setCity(event) {
-  if (event.code === 'Enter') {
+
+  
+function setCity(e) {
+  if (e.code === 'Enter') {
+    if(city.textContent != ""){
+      town=city.textContent;
+    }
+    localStorage.setItem('city', town);
     getWeather();
     city.blur();
+  }else if(e.code !== 'Enter' && e.code != null){
+    return;
+  }else if(city.textContent == ""){
+    city.textContent=tmp;
   }
 }
 
@@ -208,12 +250,9 @@ function setCity(event) {
 async function getCitate(){
   const response = await fetch(cUrl);
   const data = await response.json();
-  // console.log(data);
   citate.innerText = await data.value;
 
 }
-
-
 
 name.addEventListener('click', clear);
 name.addEventListener('keypress', setName);
@@ -224,6 +263,8 @@ focus.addEventListener('blur', setFocus);
 (document.getElementById('more')).addEventListener('click', getCitate);
 document.addEventListener('DOMContentLoaded', getWeather);
 
+city.addEventListener('click', clear);
+city.addEventListener('blur', setCity);
 city.addEventListener('keypress', setCity);
 
 // Run
@@ -232,4 +273,3 @@ setBgGreet();
 getName();
 getFocus();
 getCitate();
-getWeather();
