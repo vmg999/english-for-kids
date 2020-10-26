@@ -7,6 +7,9 @@
 *:focus {
   outline: none;
 }
+html{
+  overflow-x: hidden;
+}
 
 :root {
   font-size: 10px;
