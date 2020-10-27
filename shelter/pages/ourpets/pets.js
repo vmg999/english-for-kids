@@ -24,13 +24,9 @@ function createBurger(){
     burgermenu=document.getElementById('burger-menu');
     burger.addEventListener('click', (e)=>{
         if(burger_status == 0){
-            // console.log(e);
-            console.log('op');
             openburger();
         }else if(burger_status == 1){
             closeburger();
-            // console.log(e);
-            console.log('cls');
         }
         
     })
@@ -43,6 +39,7 @@ function openburger(){
     burgermenu.classList.add('burg-slide-in');
     burger.classList.add('burger-rotate');
     burgeroverlay.classList.add("active-overlay");
+    (document.querySelector('html')).style.overflow="hidden";
 
     logo.classList.add('logo-color');
     logos.classList.add('logo-color');
@@ -53,6 +50,7 @@ function closeburger(){
     burgermenu.classList.add('burg-slide-out');
     burger.classList.add('burger-rotate-back');
     burgeroverlay.classList.remove("active-overlay");
+    (document.querySelector('html')).style.overflow="auto";
 
     logo.classList.remove('logo-color');
     logos.classList.remove('logo-color');
@@ -70,7 +68,6 @@ if (bdw() < 768){
    createBurger();
 }
 window.addEventListener("resize", (e) => {
-    // console.log(e.target.innerWidth);
     if(e.target.innerWidth<768){
         if(burgerIsSet == 0){
             createBurger();
@@ -95,7 +92,7 @@ let overlay = document.querySelectorAll(".overlay"),
 closebutton.forEach((n) => n.addEventListener("click", closeModal));
 overlay.forEach((n) => n.addEventListener("click", ()=>{
     closeModal();
-    closeburger();
+    if(burger_status==1) {closeburger()}
 }));
 
 //------------------slider size-----------------------------------------
@@ -258,13 +255,14 @@ function createCard(i) {
 //----------modal window funcs---------------
 function addbtn() {
   document
-    .querySelectorAll(".card-btn")
+    .querySelectorAll(".card")
     .forEach((n) => n.addEventListener("click", openModal)); //add modal button
 }
 
 function openModal(e) {
   modal[0].classList.add("active-modal");
   overlay[0].classList.add("active-overlay");
+  (document.querySelector('html')).style.overflow="hidden";
 
   if (navigator.userAgent.search("Firefox") != -1) {
     name = e.explicitOriginalTarget.parentNode.childNodes[1].innerHTML;
@@ -287,6 +285,7 @@ function openModal(e) {
 function closeModal(e) {
   modal[0].classList.remove("active-modal");
   overlay[0].classList.remove("active-overlay");
+  (document.querySelector('html')).style.overflow="auto";
 }
 
 function getInd(name) {

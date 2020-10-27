@@ -383,6 +383,17 @@ header {
   padding-bottom: 3px;
   border-bottom: 3px solid var(--color-primary);
 }
+.listn {
+  font-family: Arial;
+  font-size: var(--font15);
+  font-style: normal;
+  font-weight: 400;
+  line-height: var(--line-height);
+  letter-spacing: 0px;
+  text-align: left;
+  color: var(--color-dark-l);
+  text-decoration: none;
+}
 
 .list:hover, .list-current:hover{
   color: var(--color-primary);
@@ -716,6 +727,7 @@ header {
     display: flex;
     flex-direction: column;
     justify-content: space-between;
+    overflow: hidden;
   }
   .pets-heading {
     height: 9rem;
@@ -759,6 +771,7 @@ header {
     flex-direction: column;
     justify-content: space-between;
     align-items: center;
+    overflow: hidden;
   }
   .pets-heading {
     height: 6.4rem;
@@ -875,6 +888,7 @@ header {
 }
 .card:hover {
   box-shadow: 10px 10px 10px rgba(0,0,0,0.5);
+  background-color: var(--color-light-xl);
 }
 
 .card-btn {

@@ -33,6 +33,7 @@ function openburger(){
     burgermenu.classList.remove('burg-slide-def');
     burgermenu.classList.add('burg-slide-in');
     burger.classList.add('burger-rotate');
+    (document.querySelector('html')).style.overflow="hidden";
     overlay[0].classList.add("active-overlay");
 }
 function closeburger(){
@@ -41,6 +42,7 @@ function closeburger(){
     burgermenu.classList.add('burg-slide-out');
     burger.classList.add('burger-rotate-back');
     overlay[0].classList.remove("active-overlay");
+    (document.querySelector('html')).style.overflow="auto";
 
     setTimeout(()=>{
         burger.classList.remove('burger-rotate');
@@ -79,7 +81,7 @@ let overlay = document.querySelectorAll(".overlay"),
 closebutton.forEach((n) => n.addEventListener("click", closeModal));
 overlay.forEach((n) => n.addEventListener("click", ()=>{
     closeModal();
-    closeburger();
+    if(burger_status==1) {closeburger()}
 }));
 
 //------------------slider size-----------------------------------------
@@ -208,13 +210,14 @@ function createCard(i) {
 //----------modal window funcs---------------
 function addbtn() {
   document
-    .querySelectorAll(".card-btn")
+    .querySelectorAll(".card")
     .forEach((n) => n.addEventListener("click", openModal)); //add modal button
 }
 
 function openModal(e) {
   modal[0].classList.add("active-modal");
   overlay[0].classList.add("active-overlay");
+  (document.querySelector('html')).style.overflow="hidden";
 
   if (navigator.userAgent.search("Firefox") != -1) {
     name = e.explicitOriginalTarget.parentNode.childNodes[1].innerHTML;
@@ -237,6 +240,7 @@ function openModal(e) {
 function closeModal(e) {
   modal[0].classList.remove("active-modal");
   overlay[0].classList.remove("active-overlay");
+  (document.querySelector('html')).style.overflow="auto";
 }
 
 function getInd(name) {
