@@ -80,17 +80,21 @@ request.onload = () => {
       fullPetsList = [...fullPetsList, ...tmpPets];
     }
 
-    for (let q = 6; q < fullPetsList.length; q += 6) {
-      for (let w = q; w < q + 6; w++) {
-        for (let e = q; e < q + 6; e++) {
-          if (fullPetsList[e] && fullPetsList[w].name === fullPetsList[e].name && w != e && w < e){
-            eightn = Math.ceil(w / 8);
-            strt = (eightn - 1) * 8;
-            fullPetsList.splice(strt, 0, fullPetsList.splice(fullPetsList[w], 1)[0]);
+    function mix(){
+      for (let q = 6; q < fullPetsList.length; q += 6) {
+        for (let w = q; w < q + 6; w++) {
+          for (let e = q; e < q + 6; e++) {
+            if (fullPetsList[e] && fullPetsList[w].name === fullPetsList[e].name && w != e && w < e){
+              eightn = Math.ceil(w / 8);
+              strt = (eightn - 1) * 8;
+              fullPetsList.splice(strt, 0, (fullPetsList.splice(w, 1)[0]));
+            }
           }
         }
       }
     }
+    mix();
+    mix();
   })();
 
   //------------------------------------
