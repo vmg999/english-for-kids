@@ -10,9 +10,7 @@ const time = document.querySelector('.time'),
 let tmp,
     nm,
     daytime,
-    town,
-    today = new Date(),
-    hour = today.getHours();
+    town;
 
 const weatherIcon = document.querySelector('.weather-icon');
 const temperature = document.querySelector('.temperature');
@@ -45,6 +43,9 @@ dayset=(()=>{ // -- day every hour background image set --
 })();
 
 function setBgGreet() {
+  today = new Date();
+  hour = today.getHours();
+
   if (hour >= 6 && hour < 12) {
     // Morning
     daytime="morning";
@@ -84,6 +85,9 @@ function viewBgImage(data) {
 }
 
 function getImage() {
+  today = new Date();
+  hour = today.getHours();
+
   const ind = dayset[dtn][(hour%6)];
   const imageSrc = window.location.href + base + daytime + "/" + images[ind];
   viewBgImage(imageSrc);
@@ -92,6 +96,9 @@ function getImage() {
 } 
 
 function getImageNext(){
+  today = new Date();
+  hour = today.getHours();
+
   tmp=dayset.flat();
   getImageNext.next++;
 
@@ -123,10 +130,12 @@ btn.addEventListener('click', getImageNext);
 
 // Show Time
 function showTime() {
-  let min = today.getMinutes(),
-    sec = today.getSeconds();
-    day = dayOfWeek[today.getDay()];
-    month = monthName[today.getMonth()];
+  let today = new Date(),
+    hour = today.getHours(),
+     min = today.getMinutes(),
+    sec = today.getSeconds(),
+    day = dayOfWeek[today.getDay()],
+    month = monthName[today.getMonth()],
     nday = today.getDate();
 
 
