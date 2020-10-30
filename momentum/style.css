@@ -9,11 +9,11 @@
 }
 
 body {
-  font-family: 'Quicksand', sans-serif;
+  font-family: monospace;
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
+  justify-content: space-between;
   text-align: center;
   height: 100vh;
   background-size: cover;
@@ -22,67 +22,122 @@ body {
   transition: background-image 1s ease-in-out;
 }
 
-.tm{
-  width: 34vw;
-  text-align: left;
-  padding-left: 1vw;
+.main{
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
 }
+
 .time {
-  font-size: 8.5vw;
+  font-size: 8rem;
 }
 .fullDate{
-  font-size: 2.5vw;
+  font-size: 2.5rem;
 }
 
 h1 {
-  margin-top: 2vw;
-  margin-bottom: 3vw;
-  font-size: 2.2vw;
+  font-size: 2rem;
+  margin: 1.5vw;
 }
 
 h2 {
-  font-size: 1.8vw;
+  font-size: 1.8rem;
   margin-bottom: 0.6vw;
   opacity: 0.8;
 }
 
 @media (max-width: 700px) {
   .time {
-    font-size: 7vw;
+    font-size: 6rem;
+  }
+  .fullDate{
+    font-size: 2.4rem;
+  }
+  
+  h1 {
+    font-size: 1.8rem;
+    margin: 1.5vw;
+  }
+  
+  h2 {
+    font-size: 1.6rem;
+    margin-bottom: 0.6vw;
+    opacity: 0.8;
   }
 }
 
+@media (max-width: 420px) {
+  .time {
+    font-size: 4rem;
+  }
+  .fullDate{
+    font-size: 2rem;
+  }
+  
+  h1 {
+    font-size: 1.3rem;
+    margin: 1.5vw;
+  }
+  
+  h2 {
+    font-size: 1.2rem;
+    margin-bottom: 0.6vw;
+    opacity: 0.8;
+  }
+
+  .citate{
+    min-width: 15rem;
+    max-width: 36vw;
+  }
+  .citate-text{
+    font-size: 1rem;
+  }
+}
+
+/* ----------------citate------------------- */
+
+
+@media (min-width: 421px){
+  .citate{
+    min-width: 23rem;
+    width: 36vw;
+    min-height: 9rem;
+    height: 22vmin;
+  }
+
+  .citate-text{
+    font-size: 1.2rem;
+  }
+}
 .citate{
-  position: fixed;
-  left:2rem;
-  bottom: 2rem;
-  min-height: 25vh;
-  width: 30vw;
+  align-self: flex-start;
   background-color: rgba(255,255,255,0.5);
   border-radius: 1rem;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+  margin-left: 1vmin;
+  margin-bottom: 0.5rem;
   padding: 1rem;
+  
 
 }
 .citate-text{
   width: 100%;
   height: 75%;
-  font-size: 1.3vw;
   text-align: center;
-  
 }
 .citate-auth{
   display: flex;
   flex-direction: row;
   justify-content: space-between;
-  font-size: 1.5vw;
+  font-size: 1rem;
 }
 #more{
-  width: 7vw;
+  width: 6rem;
   border-radius: 0.8rem;
-  font-size: 1.5vw;
+  font-size: 1rem;
 }
 #more:hover{
   cursor: pointer;
@@ -92,7 +147,7 @@ h2 {
   outline: none;
 }
 
-
+/* -----------update button ----------- */
 .btn {
   width: 60px;
   height: 60px;
@@ -102,8 +157,8 @@ h2 {
   background-repeat: no-repeat;
   filter: grayscale(1);
   position: fixed;
-  right: 2rem;
-  bottom: 2rem;
+  right: 2vmin;
+  bottom: 2vmin;
 }
 .btn:hover {
   filter: grayscale(.8);
@@ -117,23 +172,24 @@ h2 {
   transform: scale(1.02)
 }
 
-
+/* ------ weather------------------------ */
 .weather{
-  position: fixed;
-  right:2rem;
-  top: 2rem;
-  min-height: 25vh;
+  align-self: flex-end;
+  min-height: 11rem;
+  height: 25vh;
   min-width: 20vw;
   background-color: rgba(255,255,255,0.5);
   border-radius: 1rem;
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
-  padding: 1rem;
+  margin-top: 0.5rem;
+  margin-right: 1vmin;
+  padding: 0.7rem;
 
+  font-size: 0.875rem;
 }
 .temperature{
-  font-size: 2rem;
+  font-size: 1.2rem;
 }
 .top{
   display: flex;
@@ -149,6 +205,6 @@ h2 {
 }
 
 .city{
-  font-size: 1.8rem;
+  font-size: 1.2rem;
   text-align: right;
 }

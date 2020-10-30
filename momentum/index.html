@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -8,10 +9,24 @@
   <link rel="stylesheet" href="assets/owfont-regular.css">
   <title>momentum</title>
 </head>
+
 <body>
-  <div class="tm">
-  <time class="time"></time>
+  <div class="weather">
+    <div class="top">
+      <div class="temperature"></div>
+      <i class="weather-icon owf owf-3x"></i>
+    </div>
+    <div class="end">
+      <div class="weather-description"></div>
+      <div class="pressure"></div>
+      <div class="humidity"></div>
+      <div class="wind"></div>
+      <div class="city" contenteditable="true">Киев</div>
+    </div>
   </div>
+
+<main class="main">
+  <time class="time"></time>
   <div id="fullDate" class="fullDate"></div>
   <h1>
     <span class="greeting"></span>
@@ -19,20 +34,8 @@
   </h1>
   <h2>What Is Your Focus For Today?</h2>
   <h2 class="focus" contenteditable="true"></h2>
+</main>
 
-<div class="weather">
-  <div class="top">
-  <div class="temperature"></div>
-  <i class="weather-icon owf owf-4x"></i>
-  </div>
-  <div class="end">
-  <div class="weather-description"></div>
-  <div class="pressure"></div>
-  <div class="humidity"></div>
-  <div class="wind"></div>
-  <div class="city" contenteditable="true">Киев</div>
-</div>
-</div>
 
 
   <div class="citate">
@@ -42,7 +45,8 @@
       <button id="more">More</button>
     </div>
   </div>
-  <button class="btn">   </button>
+  <button class="btn"> </button>
   <script src="script.js"></script>
 </body>
+
 </html>

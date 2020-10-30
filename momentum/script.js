@@ -10,8 +10,9 @@ const time = document.querySelector('.time'),
 let tmp,
     nm,
     daytime,
-    town;
-
+    town,
+    today = new Date(),
+    hour = today.getHours();
 
 const weatherIcon = document.querySelector('.weather-icon');
 const temperature = document.querySelector('.temperature');
@@ -26,33 +27,46 @@ const dayOfWeek = ["Воскресенье", "Понедельник", "Втор
 const monthName = ["Января", "Февраля", "Марта", "Апреля", "Мая", "Июня", "Июля", "Августа", "Сентября", "Октября", "Ноября", "Декабря"];
 
 const base = '/assets/images/';
-const images = ['01.jpg', '02.jpg', '03.jpg', '05.jpg', '06.jpg', '07.jpg', '08.jpg', '09.jpg', '10.jpg', '11.jpg', '12.jpg', '13.jpg', '14.jpg', '15.jpg', '16.jpg', '17.jpg', '18.jpg', '19.jpg', '20.jpg'];
-let i = Math.floor(Math.random()*20);
+const images = ['01.jpg', '02.jpg', '03.jpg', '04.jpg','05.jpg', '06.jpg', '07.jpg', '08.jpg', '09.jpg', '10.jpg', '11.jpg', '12.jpg', '13.jpg', '14.jpg', '15.jpg', '16.jpg', '17.jpg', '18.jpg', '19.jpg', '20.jpg'];
 
-// Set Background and Greeting
+dayset=(()=>{ // -- day every hour background image set -- 
+  dayset=[];
+  for(let i=0;i<4;i++){
+    dayset[i]=[];
+
+    while(dayset[i].length<6){
+        rnd=Math.floor(Math.random()*20);
+        if(!dayset[i].some(e=>e==rnd)){
+          dayset[i].push(rnd);
+        }
+      }
+    }
+  return dayset;
+})();
+
 function setBgGreet() {
-  let today = new Date(),
-    hour = today.getHours();
-
-
   if (hour >= 6 && hour < 12) {
     // Morning
     daytime="morning";
+    dtn=0;
     getImage();
     greeting.textContent = 'Доброе утро, ';
   } else if (hour >= 12 && hour < 18) {
     // Afternoon
     daytime="day";
+    dtn=1;
     getImage();
     greeting.textContent = 'Добрый день, ';
   } else if (hour >= 18) {
     // Evening
     daytime="evening";
+    dtn=2;
     getImage();
     greeting.textContent = 'Добрый вечер, ';
   }else if(hour >= 0 && hour < 6){
     // Night
     daytime="night";
+    dtn=3;
     getImage();
     greeting.textContent = 'Доброй ночи, ';
     document.body.style.color = 'white';
@@ -68,24 +82,48 @@ function viewBgImage(data) {
     body.style.backgroundImage = `url(${src})`;
   }; 
 }
+
 function getImage() {
-  const index = i % images.length;
-  const imageSrc = window.location.href + base + daytime + "/" + images[index];
+  const ind = dayset[dtn][(hour%6)];
+  const imageSrc = window.location.href + base + daytime + "/" + images[ind];
   viewBgImage(imageSrc);
-  i++;
   btn.disabled = true;
   setTimeout(function() { btn.disabled = false }, 1000);
 } 
 
+function getImageNext(){
+  tmp=dayset.flat();
+  getImageNext.next++;
+
+  k=(hour + 18 + getImageNext.next)%24;
+  ind = tmp[k];
+
+  if(k >=6 && k < 12){
+    dt="day";
+  }else if(k >= 12 && k < 18){
+    dt="evening";
+  }else if(k >= 18){
+    dt="night";
+  }else if(k >= 0 && k < 6){
+    dt="morning";
+  }
+
+  const imageSrc = window.location.href + base + dt + "/" + images[ind];
+  viewBgImage(imageSrc);
+  btn.disabled = true;
+  setTimeout(function() { btn.disabled = false }, 1000);
+
+ 
+}
+getImageNext.next=0;
+
 const btn = document.querySelector('.btn');
-btn.addEventListener('click', getImage);
+btn.addEventListener('click', getImageNext);
 
 
 // Show Time
 function showTime() {
-  let today = new Date(),
-    hour = today.getHours(),
-    min = today.getMinutes(),
+  let min = today.getMinutes(),
     sec = today.getSeconds();
     day = dayOfWeek[today.getDay()];
     month = monthName[today.getMonth()];
