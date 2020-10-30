@@ -270,7 +270,7 @@ async function getWeather() {
 
   
 function setCity(e) {
-  if (e.code === 'Enter') {
+  if (e.code === 'Enter' || e.keyCode == 13) {
     if(city.textContent != ""){
       town=city.textContent;
     }
