@@ -80,3 +80,8 @@
   .keyboard__key--dark {
     background: rgba(0, 0, 0, 0.25);
   }
+
+  .lang__key--active {
+    color: red;
+    font-weight: bold;
+  }
