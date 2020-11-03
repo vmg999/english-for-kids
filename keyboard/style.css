@@ -87,3 +87,7 @@
     color: red;
     font-weight: bold;
   }
+
+  .pressed{
+      border: solid 3px orange;
+  }
