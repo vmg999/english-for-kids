@@ -6,6 +6,8 @@
     font-size: 20px;
     height: calc(100vh - 380px);
     min-height: 300px;
+    border: solid 2px black;
+    border-radius: 4px;
   }
   
   .keyboard {

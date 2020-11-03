@@ -19,6 +19,7 @@ const Keyboard = {
       capsLock: false,
       shift: false,
       lang: "en",
+      cursorPosition: null,
     },
   
     init() {
@@ -45,12 +46,14 @@ const Keyboard = {
         element.addEventListener("click", () => {
           this.open(element.value, currentValue => {element.value = currentValue;});
           this.elements.current = element;
+          this.properties.cursorPosition = this.elements.current.selectionStart; //----get cursor position----
         });
       });
 
       document.querySelectorAll(".use-keyboard-input").forEach(element => {
         element.addEventListener("keydown", (e) => {           
             this.properties.value = element.value;
+            this.properties.cursorPosition = this.elements.current.selectionStart; //----get cursor position----
             this._triggerEvent("oninput");
         });
       });
@@ -64,7 +67,7 @@ const Keyboard = {
         "q", "w", "e", "r", "t", "y", "u", "i", "o", "p", "[", "]", "\\",
         "caps", "a", "s", "d", "f", "g", "h", "j", "k", "l", ";", "'", "enter",
         "Shift", "z", "x", "c", "v", "b", "n", "m", ",", ".", "/",
-        "done","space","En/Ru"
+        "done","space","En/Ru","left","right"
       ];
 
       const keyShiftLayout = [
@@ -72,21 +75,21 @@ const Keyboard = {
         "q", "w", "e", "r", "t", "y", "u", "i", "o", "p", "{", "}", "|",
         "caps", "a", "s", "d", "f", "g", "h", "j", "k", "l", ":", "\"", "enter",
         "Shift", "z", "x", "c", "v", "b", "n", "m", "<", ">", "?",
-        "done","space","En/Ru"
+        "done","space","En/Ru","left","right"
       ];
       const keyRuLayout = [
         "ё", "1", "2", "3", "4", "5", "6", "7", "8", "9", "0", "-", "=", "backspace",
         "й", "ц", "у", "к", "е", "н", "г", "ш", "щ", "з", "х", "ъ", "\\",
         "caps", "ф", "ы", "в", "а", "п", "р", "о", "л", "д", "ж", "э", "enter",
         "Shift", "я", "ч", "с", "м", "и", "т", "ь", "б", "ю", ".",
-        "done","space","En/Ru"
+        "done","space","En/Ru","left","right"
       ];
       const keyRuShiftLayout = [
         "Ё", "!", "\"", "№", ";", "%", ":", "?", "*", "(", ")", "_", "+", "backspace",
         "й", "ц", "у", "к", "е", "н", "г", "ш", "щ", "з", "х", "ъ", "\\",
         "caps", "ф", "ы", "в", "а", "п", "р", "о", "л", "д", "ж", "э", "enter",
         "Shift", "я", "ч", "с", "м", "и", "т", "ь", "б", "ю", ",",
-        "done","space","En/Ru"
+        "done","space","En/Ru","left","right"
       ];
   
       // Creates HTML for an icon
@@ -163,6 +166,30 @@ const Keyboard = {
             });
   
             break;
+          
+            case "left":
+                keyElement.classList.add("keyboard__key");
+                keyElement.innerHTML = createIconHTML("arrow_back");
+      
+                keyElement.addEventListener("click", () => {
+                    this.elements.current.selectionStart=this.elements.current.selectionEnd=--this.properties.cursorPosition; //----set cursor position----
+                    this._triggerEvent("oninput");
+                    this.elements.current.focus();
+                });
+      
+            break;
+
+            case "right":
+                keyElement.classList.add("keyboard__key");
+                keyElement.innerHTML = createIconHTML("arrow_forward");
+      
+                keyElement.addEventListener("click", () => {
+                    this.elements.current.selectionStart=this.elements.current.selectionEnd=++this.properties.cursorPosition; //----set cursor position----
+                    this._triggerEvent("oninput");
+                    this.elements.current.focus();
+                });
+      
+            break;
   
           case "done":
             keyElement.classList.add("keyboard__key--wide", "keyboard__key--dark");
@@ -194,9 +221,12 @@ const Keyboard = {
             }
 
             keyElement.addEventListener("click", () => {
-            this.properties.value += (this.properties.capsLock && !this.properties.shift) ? keyElement.textContent.toUpperCase() : keyElement.textContent;
+            val=(this.properties.capsLock && !this.properties.shift) ? keyElement.textContent.toUpperCase() : keyElement.textContent;
+            this.properties.value = this.insertInCur(val);
+            
             this._triggerEvent("oninput");
             this.elements.current.focus();
+            this.elements.current.selectionStart=this.elements.current.selectionEnd=this.properties.cursorPosition;  //----set cursor position----
             });
   
             break;
@@ -306,6 +336,12 @@ const Keyboard = {
               }    
         }
         this.elements.current.focus();
+    },
+    insertInCur(val){
+        tmp = this.properties.value.slice(0, this.properties.cursorPosition) + val + this.properties.value.slice(this.properties.cursorPosition);
+        this.properties.cursorPosition++;
+        this.elements.current.selectionStart=this.elements.current.selectionEnd=this.properties.cursorPosition;
+        return tmp;
     },
   
     open(initialValue, oninput, onclose) {
