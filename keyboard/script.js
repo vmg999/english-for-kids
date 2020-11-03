@@ -5,7 +5,8 @@ const Keyboard = {
       keys: [],
       shift: null,
       en: null,
-      ru: null
+      ru: null,
+      current: null,
     },
   
     eventHandlers: {
@@ -41,12 +42,19 @@ const Keyboard = {
       this.elements.ru = document.getElementById("ru");
       // Automatically use keyboard for elements with .use-keyboard-input
       document.querySelectorAll(".use-keyboard-input").forEach(element => {
-        element.addEventListener("focus", () => {
-          this.open(element.value, currentValue => {
-            element.value = currentValue;
-          });
+        element.addEventListener("click", () => {
+          this.open(element.value, currentValue => {element.value = currentValue;});
+          this.elements.current = element;
         });
       });
+
+      document.querySelectorAll(".use-keyboard-input").forEach(element => {
+        element.addEventListener("keydown", (e) => {           
+            this.properties.value = element.value;
+            this._triggerEvent("oninput");
+        });
+      });
+
     },
   
     _createKeys() {
@@ -120,19 +128,15 @@ const Keyboard = {
           case "Shift":
             keyElement.classList.add("keyboard__key--wide", "keyboard__key--activatable", "shift");
             keyElement.innerHTML = "<span>Shift</span>";
-            // this.elements.shift = document.querySelector(".shift");
-  
             keyElement.addEventListener("click", () => {
               this._toggleShift();
             });
   
             break;
 
-        case "En/Ru":
+          case "En/Ru":
                 keyElement.classList.add("keyboard__key--wide");
-                keyElement.innerHTML = "<span id='en' class='lang__key--active'>En </span> | <span id='ru'> Ru</span>";
-                // this.elements.shift = document.querySelector(".shift");
-      
+                keyElement.innerHTML = "<span id='en' class='lang__key--active'>En </span> | <span id='ru'> Ru</span>";      
                 keyElement.addEventListener("click", () => {
                    this._toggleLang();
                 });
@@ -188,13 +192,11 @@ const Keyboard = {
             }else{
                 keyElement.shiftRuCase = keyRuShiftLayout[keyLayout.indexOf(key)];
             }
-// ------------------------key press----------------------------------------------------
+
             keyElement.addEventListener("click", () => {
-              this.properties.value += (this.properties.capsLock && !this.properties.shift) ? keyElement.textContent.toUpperCase() : keyElement.textContent;
-              this._triggerEvent("oninput");
-            //   if(this.properties.shift){
-            //     this._toggleShift();
-            //   }
+            this.properties.value += (this.properties.capsLock && !this.properties.shift) ? keyElement.textContent.toUpperCase() : keyElement.textContent;
+            this._triggerEvent("oninput");
+            this.elements.current.focus();
             });
   
             break;
@@ -213,6 +215,7 @@ const Keyboard = {
     _triggerEvent(handlerName) {
       if (typeof this.eventHandlers[handlerName] == "function") {
         this.eventHandlers[handlerName](this.properties.value);
+        this.elements.current.focus();
       }
     },
   
@@ -244,6 +247,7 @@ const Keyboard = {
             }
           }
     }
+    this.elements.current.focus();
     },
 
     _toggleShift(){
@@ -275,6 +279,7 @@ const Keyboard = {
                 }
               }    
         }
+        this.elements.current.focus();
     },
     _toggleLang(){
         if(this.properties.lang=="en"){
@@ -300,7 +305,7 @@ const Keyboard = {
                 }
               }    
         }
-
+        this.elements.current.focus();
     },
   
     open(initialValue, oninput, onclose) {
