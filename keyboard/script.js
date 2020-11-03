@@ -51,7 +51,7 @@ const Keyboard = {
       });
 
       document.querySelectorAll(".use-keyboard-input").forEach(element => {
-        element.addEventListener("keyup", (e) => {           
+        element.addEventListener("keyup", (e) => {
             this.properties.value = element.value;
             this.properties.cursorPosition = this.elements.current.selectionStart; //----get cursor position----
             this._triggerEvent("oninput");
@@ -91,7 +91,26 @@ const Keyboard = {
         "Shift", "я", "ч", "с", "м", "и", "т", "ь", "б", "ю", ",",
         "done","space","En/Ru","left","right"
       ];
-  
+
+      // Creates keyboard backlight
+      const keyCodeLayout = [
+          192, 49, 50, 51, 52, 53, 54, 55, 56, 57, 48, 189, 187, 8,
+          81, 87, 69, 82, 84, 89, 85, 73, 79, 80, 219, 221, 220,
+          20, 65, 83, 68, 70, 71, 72, 74, 75, 76, 186, 222, 13,
+          16, 90, 88, 67, 86, 66, 78, 77, 188, 190, 191,
+          'x', 32, 'x', 37, 39
+      ]
+      document.querySelectorAll(".use-keyboard-input").forEach(element => {
+        element.addEventListener("keydown", (e)=>{
+            ind = keyCodeLayout.indexOf(e.which);
+            this.elements.keys[ind].classList.toggle("pressed");
+        });
+        element.addEventListener("keyup", (e)=>{
+            ind = keyCodeLayout.indexOf(e.which);
+            this.elements.keys[ind].classList.toggle("pressed");
+        });
+     });
+
       // Creates HTML for an icon
       const createIconHTML = (icon_name) => {
         return `<i class="material-icons">${icon_name}</i>`;
