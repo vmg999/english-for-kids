@@ -51,7 +51,7 @@ const Keyboard = {
       });
 
       document.querySelectorAll(".use-keyboard-input").forEach(element => {
-        element.addEventListener("keydown", (e) => {           
+        element.addEventListener("keyup", (e) => {           
             this.properties.value = element.value;
             this.properties.cursorPosition = this.elements.current.selectionStart; //----get cursor position----
             this._triggerEvent("oninput");
@@ -111,8 +111,9 @@ const Keyboard = {
             keyElement.innerHTML = createIconHTML("backspace");
   
             keyElement.addEventListener("click", () => {
-              this.properties.value = this.properties.value.substring(0, this.properties.value.length - 1);
+              this.properties.value = this.insertInCur("backspace");
               this._triggerEvent("oninput");
+              this.elements.current.selectionStart=this.elements.current.selectionEnd=this.properties.cursorPosition;  //----set cursor position----
             });
   
             break;
@@ -150,8 +151,9 @@ const Keyboard = {
             keyElement.innerHTML = createIconHTML("keyboard_return");
   
             keyElement.addEventListener("click", () => {
-              this.properties.value += "\n";
+              this.properties.value = this.insertInCur("\n");
               this._triggerEvent("oninput");
+              this.elements.current.selectionStart=this.elements.current.selectionEnd=this.properties.cursorPosition;  //----set cursor position----
             });
   
             break;
@@ -161,8 +163,9 @@ const Keyboard = {
             keyElement.innerHTML = createIconHTML("space_bar");
   
             keyElement.addEventListener("click", () => {
-              this.properties.value += " ";
+              this.properties.value = this.insertInCur(" ");
               this._triggerEvent("oninput");
+              this.elements.current.selectionStart=this.elements.current.selectionEnd=this.properties.cursorPosition;  //----set cursor position----
             });
   
             break;
@@ -338,9 +341,17 @@ const Keyboard = {
         this.elements.current.focus();
     },
     insertInCur(val){
-        tmp = this.properties.value.slice(0, this.properties.cursorPosition) + val + this.properties.value.slice(this.properties.cursorPosition);
-        this.properties.cursorPosition++;
-        this.elements.current.selectionStart=this.elements.current.selectionEnd=this.properties.cursorPosition;
+        if(val=="backspace"){
+            if(this.properties.cursorPosition != 0){
+            tmp = this.properties.value.slice(0, this.properties.cursorPosition - 1) + this.properties.value.slice(this.properties.cursorPosition);
+            this.properties.cursorPosition--;  //----set cursor position----
+            }
+        }else{
+            tmp = this.properties.value.slice(0, this.properties.cursorPosition) + val + this.properties.value.slice(this.properties.cursorPosition);
+            this.properties.cursorPosition++;  //----set cursor position----
+        }
+        this.elements.current.selectionStart=this.elements.current.selectionEnd=this.properties.cursorPosition; //----set cursor position----
+
         return tmp;
     },
   
