@@ -91,3 +91,21 @@
   .pressed{
       border: solid 3px orange;
   }
+
+  .volume{
+      position: relative;
+      left: 10%;
+      top: 3px;
+      height: 40px;
+      width: 40px;
+      border-radius: 20px;
+      background: rgba(255, 255, 255, 0.2);
+      color: #ffffff;
+      font-size: 1.05rem;
+      outline: none;
+      cursor: pointer;
+      /* display: inline-flex; */
+      align-items: center;
+      justify-content: center;
+      vertical-align: top;
+  }
