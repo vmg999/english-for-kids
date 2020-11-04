@@ -136,6 +136,7 @@ const Keyboard = {
               this.properties.value = this.insertInCur("backspace");
               this._triggerEvent("oninput");
               this.elements.current.selectionStart=this.elements.current.selectionEnd=this.properties.cursorPosition;  //----set cursor position----
+              this.playSound("snare");
             });
   
             break;
@@ -165,6 +166,7 @@ const Keyboard = {
                 keyElement.innerHTML = "<span id='en' class='lang__key--active'>En </span> | <span id='ru'> Ru</span>";      
                 keyElement.addEventListener("click", () => {
                    this._toggleLang();
+                   this.playSound("boom");
                 });
       
                 break;
@@ -176,8 +178,8 @@ const Keyboard = {
               this.properties.value = this.insertInCur("\n");
               this._triggerEvent("oninput");
               this.elements.current.selectionStart=this.elements.current.selectionEnd=this.properties.cursorPosition;  //----set cursor position----
+              this.playSound("tom");
             });
-  
             break;
   
           case "space":
@@ -188,6 +190,7 @@ const Keyboard = {
               this.properties.value = this.insertInCur(" ");
               this._triggerEvent("oninput");
               this.elements.current.selectionStart=this.elements.current.selectionEnd=this.properties.cursorPosition;  //----set cursor position----
+              this.playSound("boom");
             });
   
             break;
@@ -200,6 +203,7 @@ const Keyboard = {
                     this.elements.current.selectionStart=this.elements.current.selectionEnd=--this.properties.cursorPosition; //----set cursor position----
                     this._triggerEvent("oninput");
                     this.elements.current.focus();
+                    this.playSound("boom");
                 });
       
             break;
@@ -212,6 +216,7 @@ const Keyboard = {
                     this.elements.current.selectionStart=this.elements.current.selectionEnd=++this.properties.cursorPosition; //----set cursor position----
                     this._triggerEvent("oninput");
                     this.elements.current.focus();
+                    this.playSound("boom");
                 });
       
             break;
@@ -280,6 +285,8 @@ const Keyboard = {
                 this._triggerEvent("oninput");
                 this.elements.current.focus();
                 this.elements.current.selectionStart=this.elements.current.selectionEnd=this.properties.cursorPosition;  //----set cursor position----
+
+                this.properties.lang == "en" ? this.playSound("boom"):this.playSound("tink");
             });
   
             break;
@@ -292,9 +299,14 @@ const Keyboard = {
         }
       });
       //----audio element----
-      const audio = document.createElement("audio");
-      audio.setAttribute("src", "assets/boom.wav");
-      fragment.appendChild(audio);
+      const sounds = ["boom", "clap", "kick", "snare", "tink", "tom"];
+      sounds.forEach(el=>{
+        const audio = document.createElement("audio");
+        audio.setAttribute("src", `assets/${el}.wav`);
+        audio.setAttribute("id", `${el}`);
+        fragment.appendChild(audio);
+      });
+      
 
       return fragment;
     },
@@ -304,9 +316,8 @@ const Keyboard = {
         this.eventHandlers[handlerName](this.properties.value);
         this.elements.current.focus();
       }
-      if(this.properties.volume){
-        this.playSound();
-      }
+      
+        
     },
   
     _toggleCapsLock() {
@@ -338,9 +349,8 @@ const Keyboard = {
           }
     }
     this.elements.current.focus();
-    if(this.properties.volume){
-        this.playSound();
-      }
+    
+    this.playSound("clap");
     },
 
     _toggleShift(){
@@ -373,9 +383,9 @@ const Keyboard = {
               }    
         }
         this.elements.current.focus();
-        if(this.properties.volume){
-            this.playSound();
-          }
+        
+        this.playSound("kick");
+        
     },
     _toggleLang(){
         if(this.properties.lang=="en"){
@@ -402,9 +412,9 @@ const Keyboard = {
               }    
         }
         this.elements.current.focus();
-        if(this.properties.volume){
-            this.playSound();
-          }
+        
+        this.playSound("tink");
+        
     },
     insertInCur(val){
         if(val=="backspace"){
@@ -421,10 +431,12 @@ const Keyboard = {
         return tmp;
     },
   
-    playSound(){
-        audio = document.querySelector("audio");
+    playSound(id){
+        if(this.properties.volume){
+        audio = document.getElementById(`${id}`);
         audio.currentTime = 0;
         audio.play();
+        }
     },
 
     voiceRecognition(){
