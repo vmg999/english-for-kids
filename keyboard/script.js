@@ -7,6 +7,7 @@ const Keyboard = {
       en: null,
       ru: null,
       current: null,
+      recognition: null,
     },
   
     eventHandlers: {
@@ -21,6 +22,7 @@ const Keyboard = {
       lang: "en",
       cursorPosition: null,
       volume: true,
+      voice: false,
     },
   
     init() {
@@ -68,7 +70,7 @@ const Keyboard = {
         "q", "w", "e", "r", "t", "y", "u", "i", "o", "p", "[", "]", "\\",
         "caps", "a", "s", "d", "f", "g", "h", "j", "k", "l", ";", "'", "enter",
         "Shift", "z", "x", "c", "v", "b", "n", "m", ",", ".", "/",
-        "done","space","En/Ru","left","right", "vol"
+        "voice", "done","space","En/Ru","left","right", "vol"
       ];
 
       const keyShiftLayout = [
@@ -76,21 +78,21 @@ const Keyboard = {
         "q", "w", "e", "r", "t", "y", "u", "i", "o", "p", "{", "}", "|",
         "caps", "a", "s", "d", "f", "g", "h", "j", "k", "l", ":", "\"", "enter",
         "Shift", "z", "x", "c", "v", "b", "n", "m", "<", ">", "?",
-        "done","space","En/Ru","left","right", "vol"
+        "voice", "done","space","En/Ru","left","right", "vol"
       ];
       const keyRuLayout = [
         "ё", "1", "2", "3", "4", "5", "6", "7", "8", "9", "0", "-", "=", "backspace",
         "й", "ц", "у", "к", "е", "н", "г", "ш", "щ", "з", "х", "ъ", "\\",
         "caps", "ф", "ы", "в", "а", "п", "р", "о", "л", "д", "ж", "э", "enter",
         "Shift", "я", "ч", "с", "м", "и", "т", "ь", "б", "ю", ".",
-        "done","space","En/Ru","left","right", "vol"
+        "voice", "done","space","En/Ru","left","right", "vol"
       ];
       const keyRuShiftLayout = [
         "Ё", "!", "\"", "№", ";", "%", ":", "?", "*", "(", ")", "_", "+", "backspace",
         "й", "ц", "у", "к", "е", "н", "г", "ш", "щ", "з", "х", "ъ", "\\",
         "caps", "ф", "ы", "в", "а", "п", "р", "о", "л", "д", "ж", "э", "enter",
         "Shift", "я", "ч", "с", "м", "и", "т", "ь", "б", "ю", ",",
-        "done","space","En/Ru","left","right", "vol"
+        "voice", "done","space","En/Ru","left","right", "vol"
       ];
 
       // Creates keyboard backlight
@@ -99,7 +101,7 @@ const Keyboard = {
           81, 87, 69, 82, 84, 89, 85, 73, 79, 80, 219, 221, 220,
           20, 65, 83, 68, 70, 71, 72, 74, 75, 76, 186, 222, 13,
           16, 90, 88, 67, 86, 66, 78, 77, 188, 190, 191,
-          'x', 32, 'x', 37, 39
+          'x', 'x', 32, 'x', 37, 39
       ]
       document.querySelectorAll(".use-keyboard-input").forEach(element => {
         element.addEventListener("keydown", (e)=>{
@@ -236,7 +238,21 @@ const Keyboard = {
                 }else{
                     keyElement.innerHTML = createIconHTML("volume_off");
                 }
+                this.elements.current.focus();
             });
+            break;
+
+            case "voice":
+                keyElement.classList.add("voice");
+                keyElement.innerHTML = createIconHTML("keyboard_voice");
+    
+                keyElement.addEventListener("click", () => {
+                    this.properties.voice = !this.properties.voice;
+                    keyElement.classList.toggle("voice_active");
+                   
+                    this.voiceRecognition();
+                    this.elements.current.focus();
+                });
             break;
   
           default:  // ---------------- main keys --------------------------------------------------
@@ -409,6 +425,31 @@ const Keyboard = {
         audio = document.querySelector("audio");
         audio.currentTime = 0;
         audio.play();
+    },
+
+    voiceRecognition(){
+    if(this.properties.voice){
+        window.SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
+
+        this.elements.recognition = new SpeechRecognition();
+        this.elements.recognition.interimResults = true;
+        this.elements.recognition.lang = 'en-US';
+      
+        this.elements.recognition.addEventListener('result', e => {
+          const transcript = Array.from(e.results).map(result => result[0]).map(result => result.transcript).join('');
+          if (e.results[0].isFinal) {
+                this.properties.value += transcript + "\n";
+                this._triggerEvent("oninput");
+            }
+        });
+      
+        this.elements.recognition.addEventListener('end', this.elements.recognition.start);
+        this.elements.recognition.start();
+    }else{
+        this.elements.recognition.abort();
+        this.elements.recognition.removeEventListener('end', this.elements.recognition.start);
+        this.properties.value = "";
+    }
     },
 
     open(initialValue, oninput, onclose) {
