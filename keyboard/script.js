@@ -433,12 +433,17 @@ const Keyboard = {
 
         this.elements.recognition = new SpeechRecognition();
         this.elements.recognition.interimResults = true;
-        this.elements.recognition.lang = 'en-US';
+        if(this.properties.lang == "en"){
+            this.elements.recognition.lang = 'en-US';
+        }else if(this.properties.lang == "ru"){
+            this.elements.recognition.lang = 'ru';
+        }
+        
       
         this.elements.recognition.addEventListener('result', e => {
           const transcript = Array.from(e.results).map(result => result[0]).map(result => result.transcript).join('');
           if (e.results[0].isFinal) {
-                this.properties.value += transcript + "\n";
+                this.properties.value += transcript[0].toUpperCase() + transcript.slice(1) + ". ";
                 this._triggerEvent("oninput");
             }
         });
