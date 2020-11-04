@@ -104,8 +104,37 @@
       font-size: 1.05rem;
       outline: none;
       cursor: pointer;
-      /* display: inline-flex; */
       align-items: center;
       justify-content: center;
       vertical-align: top;
   }
+
+  .voice{
+    position: relative;
+    right: 5%;
+    top: 3px;
+    height: 40px;
+    width: 40px;
+    border-radius: 20px;
+    background: rgba(255, 255, 255, 0.2);
+    color: #ffffff;
+    font-size: 1.05rem;
+    outline: none;
+    cursor: pointer;
+    align-items: center;
+    justify-content: center;
+    vertical-align: top;
+}
+.voice_active{
+    background: rgba(255, 0, 0, 0.7);
+    animation: vc 0.8s linear infinite;
+}
+
+@keyframes vc{
+    from{
+        border: none;
+    }
+    to{
+        border: double 8px rgba(255, 0, 0, 0.7);
+    }
+}
