@@ -1,0 +1,194 @@
+* {
+  padding: 0;
+  margin: 0;
+}
+
+:root {
+  --size: 400px;
+}
+
+.body {
+  background: url("assets/img/fon4.jpg");
+  background-size: cover;
+  height: 100vh;
+  width: 99vw;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: row;
+}
+.main {
+  width: 75vw;
+  min-height: 500px;
+  background-color: rgba(98, 132, 148, 0.5);
+
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+  align-items: center;
+}
+
+.puzzle {
+  width: var(--size);
+  height: var(--size);
+  background-color: white;
+  position: relative;
+  border: 1px solid black;
+  border-radius: 3px;
+  align-self: center;
+}
+.newpzl{
+    transform: rotateY(360deg);
+    transition: 1s;
+}
+
+.tile {
+  background-color: wheat;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 3rem;
+  box-sizing: border-box;
+  border: 1px solid black;
+  border-radius: 3px;
+  position: absolute;
+  left: 0;
+  top: 0;
+
+  transition: all 0.2s;
+}
+
+.tilesize3 {
+  width: calc(var(--size) / 3);
+  height: calc(var(--size) / 3);
+}
+.tilesize4 {
+  width: calc(var(--size) / 4);
+  height: calc(var(--size) / 4);
+}
+.tilesize5 {
+  width: calc(var(--size) / 5);
+  height: calc(var(--size) / 5);
+}
+.tilesize6 {
+  width: calc(var(--size) / 6);
+  height: calc(var(--size) / 6);
+}
+.tilesize7 {
+  width: calc(var(--size) / 7);
+  height: calc(var(--size) / 7);
+}
+.tilesize8 {
+  width: calc(var(--size) / 8);
+  height: calc(var(--size) / 8);
+}
+
+.tile:hover {
+  cursor: pointer;
+  background-color: rgb(245, 194, 99);
+}
+
+/* ----------counter---------- */
+.counter {
+  background-color: blanchedalmond;
+  width: 200px;
+  height: 100px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  align-items: center;
+}
+.timer {
+  background-color: #fff;
+  width: 160px;
+  height: 40px;
+  font-size: 2rem;
+  text-align: center;
+}
+.moves {
+  background-color: #fff;
+  width: 160px;
+  height: 40px;
+  font-size: 2rem;
+  text-align: center;
+}
+
+/* ----------menu------------ */
+.menu {
+  width: 300px;
+  height: 400px;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  align-items: center;
+}
+
+.button {
+  font-size: 1.1rem;
+  width: 12rem;
+  min-height: 3rem;
+  border-radius: 3px;
+}
+
+.button:hover {
+  cursor: pointer;
+  transform: scale(1.05);
+}
+.input {
+  font-size: 1rem;
+  width: 10rem;
+  min-height: 2rem;
+  border-radius: 3px;
+}
+
+/* --------------modal---------------- */
+
+.modal {
+  width: 40vw;
+  height: 40vh;
+  position: fixed;
+  top: 30vh;
+  left: 30vw;
+  background-color: rgba(255, 255, 255, 0.95);
+  border-radius: 0.7vw;
+  transform: scale(0);
+
+  font-size: 2.5rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  align-items: center;
+}
+
+.modal-active {
+  transform: scale(1);
+  transition: 0.3s;
+}
+
+.modaltext {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+.modaltext p{
+    text-align: center;
+}
+.btns {
+  width: 70%;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+}
+.modalbutton {
+  font-size: 1.1rem;
+  width: 8rem;
+  min-height: 2rem;
+  border-radius: 3px;
+}
+
+.modalbutton:hover {
+  cursor: pointer;
+  transform: scale(1.05);
+}
