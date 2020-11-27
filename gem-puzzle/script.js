@@ -238,7 +238,6 @@ class GemPuzzle {
         }
       });
     }
-    // console.log(k);
     const x = this.elements.tiles[k].left;
     const y = this.elements.tiles[k].top;
     const p = this.elements.tiles[k].position;
@@ -525,11 +524,14 @@ class GemPuzzle {
   autoResolve() {
     if (this.parameters.puzzleSize === 3) {
       const moves = countWay(this.elements.randomArray);
-      for (let i = 0; i < moves.length; i += 1) {
-        setTimeout(() => {
-          const key = this.getTileNumByPosition(moves[i] + 1);
-          this.moveTile(key);
-        }, (20 + i * 10));
+      const accept = confirm(`Решение займет ${moves.length} ходов, ${moves.length / 100} секунд. Согласны ?`);
+      if (accept) {
+        for (let i = 0; i < moves.length; i += 1) {
+          setTimeout(() => {
+            const key = this.getTileNumByPosition(moves[i] + 1);
+            this.moveTile(key);
+          }, (20 + i * 10));
+        }
       }
     }
   }
