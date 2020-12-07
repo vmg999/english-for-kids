@@ -1,0 +1,266 @@
+/* ------------------------------------ modal-window -----------------------------------*/
+@media (min-width: 1280px) {
+    .modal-window {
+      width: 95.2rem;
+      height: 55.2rem;
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      transform: translate(calc(-50% + 7.6rem), calc(-50% - 2.6rem)) scale(0);
+      transition: 200ms ease-in-out;
+      z-index: 10;
+    }
+    .close-button {
+      width: 5.2rem;
+      height: 5.2rem;
+      position: fixed;
+      top: 0;
+      right: 1rem;
+    }
+    .arr-opas {
+      background-color: rgba(0,0,0,0);
+    }
+  
+    .modal-content {
+      width: 90rem;
+      height: 50rem;
+      position: fixed;
+      left: 0;
+      bottom: 0;
+      background-color: #fafafa;
+      border-radius: 0.9rem;
+    }
+    .modal-pets-img {
+      width: 55.55%;
+      height: 100%;
+    }
+    .mpi-img {
+      height: 85%;
+      margin: 0 auto;
+      position: relative;
+      top: 45%;
+      left: 50%;
+      transform: translate(-50%, -45%);
+      border-radius: 1rem;
+    }
+  
+    .mpt-header h4 {
+      text-align: left;
+      margin-top: 1rem;
+    }
+    .modal-pets-text {
+      max-width: 39%;
+      height: 74%;
+      position: absolute;
+      top: 10%;
+      right: 2.2%;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+    .mpt-text {
+      font-family: Georgia;
+      font-size: 1.5rem;
+      font-style: normal;
+      font-weight: 400;
+      line-height: 1.7rem;
+      letter-spacing: 0.06em;
+      text-align: left;
+    }
+    .mpt-list {
+      font-family: Georgia;
+      font-size: 1.5rem;
+      font-style: normal;
+      font-weight: 400;
+      line-height: 187%;
+      letter-spacing: 0.06em;
+      text-align: left;
+    }
+
+    .active-modal{
+      transform: translate(calc(-50% + 2.6rem), calc(-50% - 2.6rem)) scale(1);
+      transition: 200ms ease-in-out;
+    }
+  }
+  @media (min-width: 768px) and (max-width: 1279px) {
+    .modal-window {
+      width: 68.2rem;
+      height: 40.2rem;
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%) scale(0);
+      transition: 200ms ease-in-out;
+      z-index: 10;
+    }
+    .close-button {
+      width: 5.2rem;
+      height: 5.2rem;
+      position: fixed;
+      top: 0;
+      right: 1rem;
+    }
+    .arr-opas {
+      background-color: rgba(0,0,0,0);
+    }
+  
+    .modal-content {
+      width: 63rem;
+      height: 35rem;
+      position: fixed;
+      left: 0;
+      bottom: 0;
+      background-color: #fafafa;
+      border-radius: 0.9rem;
+    }
+    .modal-pets-img {
+      width: 55.55%;
+      height: 100%;
+    }
+    .mpi-img {
+      height: 85%;
+      margin: 0 auto;
+      position: relative;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -45%);
+      border-radius: 1rem;
+    }
+  
+    .mpt-header h4 {
+      text-align: left;
+      margin-top: 1rem;
+    }
+    .modal-pets-text {
+      max-width: 41.26%;
+      height: 86.6%;
+      position: absolute;
+      top: 2.9%;
+      right: 1.4%;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+    .mpt-text {
+      font-family: Georgia;
+      font-size: 1.3rem;
+      font-style: normal;
+      font-weight: 400;
+      line-height: 110%;
+      letter-spacing: 0.06em;
+      text-align: left;
+    }
+    .mpt-list {
+      font-family: Georgia;
+      font-size: 1.5rem;
+      font-style: normal;
+      font-weight: 400;
+      line-height: 2.4rem;
+      letter-spacing: 0.06em;
+      text-align: left;
+    }
+
+    .active-modal{
+      transform: translate(calc(-50% + 2.6rem), calc(-50% - 2.6rem)) scale(1);
+      transition: 200ms ease-in-out;
+    }
+  }
+  @media (min-width: 320px) and (max-width: 767px) {
+    .modal-window {
+      width: 27rem;
+      height: 39.3rem;
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%) scale(0);
+      transition: 200ms ease-in-out;
+      z-index: 10;
+    }
+    .close-button {
+      width: 5.2rem;
+      height: 5.2rem;
+      position: fixed;
+      top: 0;
+      right: 0;
+    }
+    .arr-opas {
+      background-color: rgba(0,0,0,0);
+    }
+  
+    .modal-content {
+      width: 24rem;
+      height: 34.1rem;
+      position: fixed;
+      left: 0;
+      bottom: 0;
+      background-color: #fafafa;
+      border-radius: 0.9rem;
+    }
+    .modal-pets-img {
+      display: none;
+    }
+    .mpt-header h3{
+      font-size: 3.5rem;
+      line-height: 130%;
+      text-align: center;
+    }
+    .mpt-header h4 {
+      font-size: 2rem;
+      text-align: center;
+      margin-top: 1rem;
+    }
+    .modal-pets-text {
+      max-width: 92%;
+      height: 94.15%;
+      margin: 0 auto;
+      padding-top: 1rem;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .mpt-text {
+      font-family: Georgia;
+      font-size: 1.3rem;
+      font-style: normal;
+      font-weight: 400;
+      line-height: 110%;
+      letter-spacing: 0.06em;
+      text-align: justify;
+    }
+    .mpt-list {
+      font-family: Georgia;
+      font-size: 1.5rem;
+      font-style: normal;
+      font-weight: 400;
+      line-height: 2rem;
+      letter-spacing: 0.06em;
+      text-align: left;
+    }
+
+    .active-modal{
+      transform: translate(calc(-50% + 1.5rem), calc(-50% - 2.6rem)) scale(1);
+      transition: 200ms ease-in-out;
+    }
+  }
+  
+  .mpt-list{
+    list-style: inside url("../../assets/icons/dot.svg");
+  }
+  .overlay {
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: rgba(41, 41, 41, 0.6);
+    transform: scale(0);
+  }
+
+  .active-overlay{
+    transform: scale(1);
+    z-index: 1;
+  }
+  .modal-window:not(:hover) .arr-opas{
+    background-color: var(--color-primary);
+  }

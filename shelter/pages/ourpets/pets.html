@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Our pets</title>
+    <link rel="stylesheet" href="pets.css">
+    <link rel="stylesheet" href="../../assets/modal.css">
+    <link rel="icon" href="../../assets/icons/favicon.ico" type="image/x-icon">
+
+</head>
+
+<body>
+    <header>
+        <div class="wrapper">
+            <div class="logo">
+                <div class="logo-title">
+                    <a href="../main/index.html"><h1 id="lg">Cozy House</h1></a>
+                </div>
+                <div class="logo-subtitle"><a id="lgs" href="../main/index.html">Shelter for pets in Boston</a></div>
+            </div>
+            <!-- ---burger--- -->
+            <nav class="burger">
+                <img id="burg" src="../../assets/icons/burger.svg" alt="">
+                   
+            </nav>
+            <div id="burger-menu" class="burger-menu burg-slide-def">
+                <div class="bmn">
+                <ul class="bmnul">
+                    <li class="m-item bl"><a class="b-list" href="../main/index.html">About the shelter</a></li>
+                    <li class="m-item bl"><a class="b-list-current" href="#">Our pets</a></li>
+                    <li class="bl b-list">Help the shelter</li>
+                    <li class="bl b-list">Contacts</li>
+                </ul>
+            </div>
+            </div>
+            <div id="burger-overlay" class="overlay">
+
+            </div>
+            <!-- ----------- -->
+            <nav class="navigation">
+                <ul class="menu">
+                    <li class="m-item"><a class="list" href="../main/index.html">About the shelter</a></li>
+                    <li class="m-item"><a class="list-current" href="../ourpets/pets.html">Our pets</a></li>
+                    <li class="listn">Help the shelter</li>
+                    <li class="listn">Contacts</li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+    <main>
+        <div class="content pets">
+            <div class="pets-heading">
+                <h3>Our friends who</h3>
+                <h3>are looking for a house</h3>
+            </div>
+            <div class="cards-container" id="pagination">
+
+            </div>
+            <div class="pets-navigation">
+                <button id="first" class="pag inactive first">&lt;&lt;</button>
+                <button id="prev" class="pag inactive prev">&lt;</button>
+                <button class="pag current">1</button>
+                <button id="next" class="pag active next">&gt;</button>
+                <button id="last" class="pag active last">&gt;&gt;</button>
+            </div>
+        </div>
+
+         <!-- modal-window  -->
+         <div class="modal-window">
+            <div class="close-button" id="close-btn">
+                <button class="arrow arr-opas">
+                    <img class="cancelsvg" src="../../assets/icons/cancel.svg" alt="">
+                </button>
+            </div>
+            <div class="modal-content">
+                <div class="modal-pets-img">
+                    <img class="mpi-img" src="" alt="pet">
+                </div>
+                <div class="modal-pets-text">
+                    <div class="mpt-header">
+                        <h3 id="modal-h3">Jennifer</h3>
+                        <h4 id="modal-h4">Dog - Labrador</h4>
+                    </div>
+                    <p class="mpt-text">
+                        Jennifer is a sweet 2 months old Labrador that is patiently waiting to find a new forever home. This girl really enjoys being able to go outside to run and play, but won't hesitate to play up a storm in the house if she has all of her favorite toys.
+                    </p>
+                    <div>
+                        <ul class="mpt-list">
+                            <li class="mpt-list-items"><b>Age: </b><span id="age">2 months</span></li>
+                            <li><b>Inoculations: </b><span id="inoc">none</span></li>
+                            <li><b>Diseases: </b><span id="diseas">none</span></li>
+                            <li><b>Parasites: </b><span id="parasites">none</span></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- overlay -->
+        <div class="overlay"></div>
+    </main>
+    <footer>
+        <div class="content footer-content">
+            <div class="contacts">
+                <h3>For questions and suggestions</h3>
+                <div class="mail">
+                    <a href="mailto:email@shelter.com"><img src="../../assets/icons/mail.svg" alt="email" /></a>
+                    <h4><a href="mailto:email@shelter.com">
+                            email@shelter.com
+                        </a></h4>
+                </div>
+                <div class="phone">
+                    <a href="tel:+136745677554"><img src="../../assets/icons/telephone.svg" alt="phone" /></a>
+                    <h4><a href="tel:+136745677554">
+                            +13 674 567 75 54
+                        </a></h4>
+                </div>
+            </div>
+            <div class="location">
+                <h3>We are waiting for your visit</h3>
+                <div class="loc">
+                    <a target="_blank"
+                        href="https://www.google.com/maps/place/Central+St,+Boston,+MA,+%D0%A1%D0%A8%D0%90/@42.3589981,-71.0537418,17.78z/data=!4m5!3m4!1s0x89e370865345ba21:0x44f6c81aa9436fb7!8m2!3d42.3588393!4d-71.0529417">
+                        <img src="../../assets/icons/pin.svg" alt="" class="pin">
+                    </a>
+                    <h4><a target="_blank"
+                            href="https://www.google.com/maps/place/Central+St,+Boston,+MA,+%D0%A1%D0%A8%D0%90/@42.3589981,-71.0537418,17.78z/data=!4m5!3m4!1s0x89e370865345ba21:0x44f6c81aa9436fb7!8m2!3d42.3588393!4d-71.0529417">
+                            1 Central Street, Boston (entrance from the store)
+                        </a></h4>
+                </div>
+                <div class="loc">
+                    <a target="_blank"
+                        href="https://www.google.com/maps/place/%D0%AE%D0%B3+%D0%9F%D0%B0%D1%80%D0%BA,+%D0%A4%D1%83%D0%BB%D1%85%D1%8D%D0%BC/@51.4693849,-0.1970964,537m/data=!3m2!1e3!4b1!4m5!3m4!1s0x48760f79376fa0e3:0x202ac3af5c1ea4ec!8m2!3d51.4693849!4d-0.1949077">
+                        <img src="../../assets/icons/pin.svg" alt="" class="pin">
+                    </a>
+                    <h4><a target="_blank"
+                            href="https://www.google.com/maps/place/%D0%AE%D0%B3+%D0%9F%D0%B0%D1%80%D0%BA,+%D0%A4%D1%83%D0%BB%D1%85%D1%8D%D0%BC/@51.4693849,-0.1970964,537m/data=!3m2!1e3!4b1!4m5!3m4!1s0x48760f79376fa0e3:0x202ac3af5c1ea4ec!8m2!3d51.4693849!4d-0.1949077">
+                            18 South Park, London
+                        </a></h4>
+                </div>
+            </div>
+            <img src="../../assets/images/footer/footer-puppy.png" alt="footer-puppy" class="ftr-puppy">
+        </div>
+    </footer>
+<script src="pets.js"></script>
+</body>
+</html>
