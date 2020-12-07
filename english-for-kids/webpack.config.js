@@ -15,6 +15,10 @@ module.exports = {
                 to: './audio'
             },
             {
+                from: './src/views',
+                to: './views'
+            },
+            {
             from: './src/img',
             to: './img'
             },
