@@ -1,5 +1,5 @@
 const cards = [ 
-  ['Action (set A)', 'Action (set B)', 'Animal (set A)', 'Animal (set B)', 'Clothes', 'Emotions'],
+  ['Action (set A)', 'Action (set B)', 'Animal (set A)', 'Animal (set B)', 'Clothes', 'Emotions', 'Food', 'Places'],
   [
     {
       word: 'cry',
@@ -298,6 +298,106 @@ const cards = [
       translation: 'смех',
       image: 'img/laugh.jpg',
       audioSrc: 'audio/laugh.mp3'
+    }
+  ],
+  [
+    {
+      word: 'bread',
+      translation: 'хлеб',
+      image: 'img/bread.jpg',
+      audioSrc: 'audio/bread.mp3'
+    },
+    {
+      word: 'burger',
+      translation: 'бургер',
+      image: 'img/burger.jpg',
+      audioSrc: 'audio/burger.mp3'
+    },
+    {
+      word: 'cake',
+      translation: 'пирожное',
+      image: 'img/cake.jpg',
+      audioSrc: 'audio/cake.mp3'
+    },
+    {
+      word: 'cheese',
+      translation: 'сыр',
+      image: 'img/cheese.jpg',
+      audioSrc: 'audio/cheese.mp3'
+    },
+    {
+      word: 'egg',
+      translation: 'яйцо',
+      image: 'img/egg.jpg',
+      audioSrc: 'audio/egg.mp3'
+    },
+    {
+      word: 'hot-dog',
+      translation: 'хот-дог',
+      image: 'img/hot-dog.jpg',
+      audioSrc: 'audio/hot-dog.mp3'
+    },
+    {
+      word: 'salad',
+      translation: 'салат',
+      image: 'img/salad.jpg',
+      audioSrc: 'audio/salad.mp3'
+    },
+    {
+      word: 'sausage',
+      translation: 'колбаса',
+      image: 'img/sausage.jpg',
+      audioSrc: 'audio/sausage.mp3'
+    }
+  ],
+  [
+    {
+      word: 'beach',
+      translation: 'пляж',
+      image: 'img/beach.jpg',
+      audioSrc: 'audio/beach.mp3'
+    },
+    {
+      word: 'city',
+      translation: 'город',
+      image: 'img/city.jpg',
+      audioSrc: 'audio/city.mp3'
+    },
+    {
+      word: 'field',
+      translation: 'поле',
+      image: 'img/field.jpg',
+      audioSrc: 'audio/field.mp3'
+    },
+    {
+      word: 'forest',
+      translation: 'лес',
+      image: 'img/forest.jpg',
+      audioSrc: 'audio/forest.mp3'
+    },
+    {
+      word: 'mountain',
+      translation: 'гора',
+      image: 'img/mountain.jpg',
+      audioSrc: 'audio/mountain.mp3'
+    },
+    {
+      word: 'ocean',
+      translation: 'океан',
+      image: 'img/ocean.jpg',
+      audioSrc: 'audio/ocean.mp3'
+    },
+    {
+      word: 'river',
+      translation: 'река',
+      image: 'img/river.jpg',
+      audioSrc: 'audio/river.mp3'
+    },
+    {
+      word: 'village',
+      translation: 'деревня',
+      image: 'img/village.jpg',
+      audioSrc: 'audio/village.mp3'
     }
   ]
 ]

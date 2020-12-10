@@ -17,3 +17,52 @@ import Router from './js/router.js';
     }
     init();
 }());
+
+
+let burger_status=0;
+let burgerIsSet=0;
+let burger;
+let burgermenu;
+
+createBurger();
+
+function createBurger(){
+    burger=document.getElementById('burg');
+    burgermenu=document.getElementById('burger-menu');
+    burger.addEventListener('click', (e)=>{
+        if(burger_status == 0){
+            openburger();
+        }else if(burger_status == 1){
+            closeburger();
+        }
+        
+    })
+    burgerIsSet=1;
+  }
+  
+  function openburger(){
+    burger_status=1;
+    burgermenu.classList.remove('burg-slide-def');
+    burgermenu.classList.add('burg-slide-in');
+    burger.classList.add('burger-rotate');
+    // (document.querySelector('html')).style.overflow="hidden";
+    // overlay[0].classList.add("active-overlay");
+  }
+  
+  function closeburger(){
+    burger_status=0;
+    burgermenu.classList.remove('burg-slide-in');
+    burgermenu.classList.add('burg-slide-out');
+    burger.classList.add('burger-rotate-back');
+    // overlay[0].classList.remove("active-overlay");
+    // (document.querySelector('html')).style.overflow="auto";
+  
+    setTimeout(()=>{
+        burger.classList.remove('burger-rotate');
+        burger.classList.remove('burger-rotate-back');
+  
+        burgermenu.classList.remove('burg-slide-in');
+        burgermenu.classList.remove('burg-slide-out');
+        burgermenu.classList.add('burg-slide-def');
+    },400);
+  }

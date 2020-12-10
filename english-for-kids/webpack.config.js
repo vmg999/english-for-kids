@@ -19,6 +19,10 @@ module.exports = {
                 to: './views'
             },
             {
+              from: './src/css',
+              to: './css'
+            },
+            {
             from: './src/img',
             to: './img'
             },

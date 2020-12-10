@@ -1,0 +1,165 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+*:focus {
+  outline: none;
+}
+html {
+  overflow-x: hidden;
+}
+
+:root {
+  font-size: 10px;
+}
+body {
+  background: rgba(235, 233, 249, 1);
+}
+
+header {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  height: 12vh;
+}
+
+/* ------ burger ------ */
+
+.burger {
+  margin-top: 4rem;
+  margin-left: 5rem;
+  z-index: 10;
+  transform: scale(1.8);
+}
+.burger:hover {
+  cursor: pointer;
+}
+.burger-rotate {
+  transform: rotate(-90deg);
+  transition: 400ms ease-in;
+}
+.burger-rotate-back {
+  transform: rotate(0deg);
+  transition: 400ms ease-in;
+}
+
+.burger-menu {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 32rem;
+  height: 100vh;
+  background-color: #407abbde;
+  z-index: 5;
+}
+
+.bmn {
+  width: 24.3rem;
+  margin: 30% auto;
+}
+.bmnul {
+  list-style: none;
+  text-align: center;
+  color: #fafafa;
+}
+.bl {
+  margin-top: 1rem;
+}
+
+.b-list {
+  font-family: Arial;
+  font-size: 3rem;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 120%;
+  letter-spacing: 0px;
+  color: #cdcdcd;
+  text-decoration: none;
+}
+
+.b-list-current {
+  color: #fafafa;
+  font-family: Arial;
+  font-size: 3.2rem;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 160%;
+  letter-spacing: 0px;
+  text-decoration: none;
+  padding-bottom: 3px;
+}
+
+.logo {
+  z-index: 10;
+}
+
+.burg-slide-def {
+  transform: translateX(100%);
+  display: none;
+}
+.burg-slide-in {
+  animation: 1s bslidein;
+}
+.burg-slide-out {
+  animation: 1s bslideout;
+}
+
+@keyframes bslidein {
+  from {
+    transform: translateX(-100%);
+  }
+
+  to {
+    margin-left: 0%;
+  }
+}
+@keyframes bslideout {
+  from {
+    margin-left: 0%;
+  }
+
+  to {
+    transform: translateX(-100%);
+  }
+}
+/* ----------------------------------------- */
+
+#main {
+  width: 99vw;
+  display: flex;
+  flex-wrap: wrap;
+  column-gap: 3vw;
+  row-gap: 3vw;
+  justify-content: space-evenly;
+}
+
+.setcard {
+  min-height: 30rem;
+  max-height: 20vw;
+  min-width: 30rem;
+  max-width: 20vw;
+  border-radius: 1rem;
+  background-color: lightgoldenrodyellow;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  align-items: center;
+  font-size: 2.6rem;
+  padding: 1rem 0;
+}
+
+.setcard:hover {
+  cursor: pointer;
+  box-shadow: 0px 1px 35px -6px rgba(0, 0, 0, 0.78);
+}
+
+.cardimg {
+  width: 95%;
+  height: 80%;
+}
+.setimg {
+  width: 100%;
+  border-radius: 5%;
+}
