@@ -45,8 +45,6 @@ function createBurger(){
     burgermenu.classList.remove('burg-slide-def');
     burgermenu.classList.add('burg-slide-in');
     burger.classList.add('burger-rotate');
-    // (document.querySelector('html')).style.overflow="hidden";
-    // overlay[0].classList.add("active-overlay");
   }
   
   function closeburger(){
@@ -54,9 +52,7 @@ function createBurger(){
     burgermenu.classList.remove('burg-slide-in');
     burgermenu.classList.add('burg-slide-out');
     burger.classList.add('burger-rotate-back');
-    // overlay[0].classList.remove("active-overlay");
-    // (document.querySelector('html')).style.overflow="auto";
-  
+
     setTimeout(()=>{
         burger.classList.remove('burger-rotate');
         burger.classList.remove('burger-rotate-back');
