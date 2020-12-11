@@ -54,7 +54,7 @@ export function createCard(obj) {
     card.append(back);
     
 
-    card.addEventListener('click', ()=>{
+    front.addEventListener('click', ()=>{
       audio.currentTime = 0;
       audio.play();
       closeburger();
