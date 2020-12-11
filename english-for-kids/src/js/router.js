@@ -1,3 +1,5 @@
+import { insertContent } from "./newcard";
+
 export default function Router(routes) {
     try {
         if (!routes) {
@@ -50,6 +52,7 @@ Router.prototype = {
             xhttp.onreadystatechange = function () {
                 if (this.readyState === 4 && this.status === 200) {
                     scope.rootElem.innerHTML = this.responseText;
+                    insertContent();
                 }
             };
             xhttp.open('GET', url, true);

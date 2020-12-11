@@ -1,6 +1,6 @@
-const cards = [ 
-  ['Action (set A)', 'Action (set B)', 'Animal (set A)', 'Animal (set B)', 'Clothes', 'Emotions', 'Food', 'Places'],
-  [
+const cards = {
+  set: ['Action (set A)', 'Action (set B)', 'Animal (set A)', 'Animal (set B)', 'Clothes', 'Emotions', 'Food', 'Places'],
+  action_a: [
     {
       word: 'cry',
       translation: 'плакать',
@@ -50,7 +50,7 @@ const cards = [
       audioSrc: 'audio/jump.mp3'
     }
   ],
-  [
+  action_b: [
     {
       word: 'open',
       translation: 'открывать',
@@ -100,7 +100,7 @@ const cards = [
       audioSrc: 'audio/swim.mp3'
     }
   ],
-  [
+  animal_a: [
     {
       word: 'cat',
       translation: 'кот',
@@ -150,7 +150,7 @@ const cards = [
       audioSrc: 'audio/sheep.mp3'
     }
   ],
-  [
+  animal_b: [
     {
       word: 'bird',
       translation: 'птица',
@@ -200,7 +200,7 @@ const cards = [
       audioSrc: 'audio/dolphin.mp3'
     }
   ],
-  [
+  clothes: [
     {
       word: 'skirt',
       translation: 'юбка',
@@ -250,7 +250,7 @@ const cards = [
       audioSrc: 'audio/shoe.mp3'
     }
   ],
-  [
+  emotions: [
     {
       word: 'sad',
       translation: 'грустный',
@@ -300,7 +300,7 @@ const cards = [
       audioSrc: 'audio/laugh.mp3'
     }
   ],
-  [
+  food: [
     {
       word: 'bread',
       translation: 'хлеб',
@@ -350,7 +350,7 @@ const cards = [
       audioSrc: 'audio/sausage.mp3'
     }
   ],
-  [
+  places: [
     {
       word: 'beach',
       translation: 'пляж',
@@ -400,7 +400,7 @@ const cards = [
       audioSrc: 'audio/village.mp3'
     }
   ]
-]
+}
 
 
 

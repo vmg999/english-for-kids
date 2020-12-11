@@ -219,3 +219,30 @@ input[type="checkbox"] {
 .link {
     text-decoration: none;
 }
+
+/*  */
+#cards {
+    display: flex;
+    flex-wrap: wrap;
+    column-gap: 3vw;
+    row-gap: 3vw;
+    justify-content: space-evenly;
+}
+
+.rotate {
+    position: relative;
+    left: 11rem;
+    width: 4.5rem;
+    height: 4rem;
+    background-image: url('../img/rotate.png');
+    background-size: cover;
+    z-index: 100;
+}
+.rotate:hover{
+    transform: scale(1.1);
+}
+
+.rotate-card {
+    transform: rotateY(180deg);
+    transition: 0.5s linear;
+}
