@@ -2,6 +2,8 @@ let burger_status = 0;
 let burgerIsSet = 0;
 let burger;
 let burgermenu;
+let mainmenu;
+let body;
 
 export function createBurger() {
   burger = document.getElementById("burg");
@@ -38,3 +40,16 @@ export function closeburger() {
     burgermenu.classList.add("burg-slide-def");
   }, 400);
 }
+
+mainmenu = document.querySelectorAll('.b-list-current');
+mainmenu.forEach(el=>{
+  el.addEventListener('click', ()=>{
+    closeburger();
+  });
+})
+body = document.getElementById('app');
+body.addEventListener('click', ()=>{
+  if(burger_status === 1) {
+    closeburger();
+  }
+})
