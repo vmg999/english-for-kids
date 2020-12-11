@@ -255,14 +255,17 @@ input[type="checkbox"] {
 
   .cardimage {
     width: 95%;
-    height: 80%;
+    height: 75%;
     border-radius: 5%;
     backface-visibility: hidden;
     margin: 0.5rem auto;
+    background-size: cover;
+    background-repeat: no-repeat;
   }
 
   .card p {
       text-align: center;
+      margin-top: 2rem;
   }
 
 
