@@ -2,6 +2,7 @@ import Route from './js/route.js';
 import Router from './js/router.js';
 import {createBurger, openburger, closeburger} from './js/burger.js';
 import {insertContent} from './js/newcard.js';
+import setGameButton from './js/game.js';
 
 (function () {
     function init() {
@@ -24,3 +25,5 @@ import {insertContent} from './js/newcard.js';
 createBurger();
 
 insertContent();
+
+setGameButton();

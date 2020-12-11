@@ -21,7 +21,7 @@ export function createCard(obj) {
 
     const rotate = document.createElement('div');
     rotate.classList.add('rotate-btn');
-    rotate.style.backgroundImage = "url('../img/rotate.png')";
+    rotate.style.backgroundImage = "url('img/rotate.png')";
     rotate.addEventListener('click', (e)=>{
         rotate.classList.toggle('hide');
         e.stopPropagation();
