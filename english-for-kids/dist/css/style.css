@@ -24,6 +24,9 @@ header {
   justify-content: space-between;
   height: 12vh;
 }
+#app{
+    position: inherit;
+}
 
 /* ------ burger ------ */
 
@@ -220,8 +223,9 @@ input[type="checkbox"] {
     text-decoration: none;
 }
 
-/*  */
+/* ----------cards--------------  */
 #cards {
+    position: inherit;
     display: flex;
     flex-wrap: wrap;
     column-gap: 3vw;
@@ -229,20 +233,69 @@ input[type="checkbox"] {
     justify-content: space-evenly;
 }
 
-.rotate {
+.card {
+    transform-style: preserve-3d;
     position: relative;
-    left: 11rem;
+    min-height: 30rem;
+    max-height: 20vw;
+    min-width: 30rem;
+    max-width: 20vw;
+    border-radius: 1rem;
+    background-color: lightgoldenrodyellow;
+    display: flex;
+    font-size: 2.6rem;
+    padding: 1rem 0;
+    transition: 0.5s linear;
+  }
+  
+  .card:hover {
+    cursor: pointer;
+    box-shadow: 0px 1px 35px -6px rgba(0, 0, 0, 0.78);
+  }
+
+  .cardimage {
+    width: 95%;
+    height: 80%;
+    border-radius: 5%;
+    backface-visibility: hidden;
+    margin: 0.5rem auto;
+  }
+
+  .card p {
+      text-align: center;
+  }
+
+
+.rotate-btn {
+    position: absolute;
+    right: 0.7rem;
+    bottom: 0.7rem;
     width: 4.5rem;
     height: 4rem;
-    background-image: url('../img/rotate.png');
     background-size: cover;
-    z-index: 100;
 }
-.rotate:hover{
+.rotate-btn:hover{
     transform: scale(1.1);
+}
+.hide{
+    opacity: 0;
+    transition: 0.5s;
 }
 
 .rotate-card {
     transform: rotateY(180deg);
     transition: 0.5s linear;
+}
+
+.front, .back {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 100%;
+    backface-visibility: hidden;
+}
+.back {
+    transform: rotateY(180deg);
 }
