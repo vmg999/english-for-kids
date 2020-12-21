@@ -67,7 +67,7 @@ header {
   text-align: center;
   color: #fafafa;
 }
-.bl {
+.burger_li {
   margin-top: 1rem;
 }
 
@@ -129,7 +129,6 @@ header {
 }
 /* ---------------checkbox-------------------------- */
 input[type="checkbox"] {
-  /* display: none; */
   opacity: 0;
 }
 
@@ -210,11 +209,11 @@ input[type="checkbox"] {
   box-shadow: 0px 1px 35px -6px rgba(0, 0, 0, 0.78);
 }
 
-.cardimg {
+.card-image {
   width: 95%;
   height: 80%;
 }
-.setimg {
+.set-image {
   width: 100%;
   border-radius: 5%;
 }
@@ -238,9 +237,7 @@ input[type="checkbox"] {
     transform-style: preserve-3d;
     position: relative;
     min-height: 30rem;
-    max-height: 20vw;
     min-width: 30rem;
-    max-width: 20vw;
     border-radius: 1rem;
     background-color: lightgoldenrodyellow;
     display: flex;

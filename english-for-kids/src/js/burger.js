@@ -1,4 +1,4 @@
-let burger_status = 0;
+let isMenuOpened = false;
 let burgerIsSet = 0;
 let burger;
 let burgermenu;
@@ -9,9 +9,9 @@ export function createBurger() {
   burger = document.getElementById("burg");
   burgermenu = document.getElementById("burger-menu");
   burger.addEventListener("click", (e) => {
-    if (burger_status == 0) {
+    if (isMenuOpened) {
       openburger();
-    } else if (burger_status == 1) {
+    } else if (isMenuOpened) {
       closeburger();
     }
   });
@@ -19,14 +19,14 @@ export function createBurger() {
 }
 
 export function openburger() {
-  burger_status = 1;
+  isMenuOpened = true;
   burgermenu.classList.remove("burg-slide-def");
   burgermenu.classList.add("burg-slide-in");
   burger.classList.add("burger-rotate");
 }
 
 export function closeburger() {
-  burger_status = 0;
+  isMenuOpened = false;
   burgermenu.classList.remove("burg-slide-in");
   burgermenu.classList.add("burg-slide-out");
   burger.classList.add("burger-rotate-back");
@@ -49,7 +49,7 @@ mainmenu.forEach(el=>{
 })
 body = document.getElementById('app');
 body.addEventListener('click', ()=>{
-  if(burger_status === 1) {
+  if(isMenuOpened) {
     closeburger();
   }
 })
