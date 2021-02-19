@@ -9,7 +9,7 @@ export function createBurger() {
   burger = document.getElementById("burg");
   burgermenu = document.getElementById("burger-menu");
   burger.addEventListener("click", (e) => {
-    if (isMenuOpened) {
+    if (!isMenuOpened) {
       openburger();
     } else if (isMenuOpened) {
       closeburger();
